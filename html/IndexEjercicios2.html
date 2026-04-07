@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/Styleindexejercicios2.css">
+    
+</head>
+<body>
+    <header>
+        <h1 id="TITULO">Jhon Mateus</h1>
+    </header>
+    <main>
+    <div id="contenedor">
+        <div class="espacio"> 
+            <h1>Calcular IVA</h1>
+            <br> 
+            <label for="precioInicial">Precio inicial</label>
+            
+             <input type="number" id="precioInicial" placeholder="Ingrese el valor inicial">
+             <br>
+             <label for="iva">Ingrese el porcentaje de IVA </label>
+             <input type="number" id="iva" placeholder="IVA"> %  <br><br>
+             <button onclick="IVA()">CALCULAR</button>
+             <br><br>
+             <input id="resultadoIva" readonly>
+             
+
+        </div>
+        <div class="espacio">
+            <h1>Área y perimetro del cuadrado </h1>
+            <br>
+            <label for="lado">Lado cuadrado</label>
+            <input type="number" id="lado" placeholder="Ingrese el valor de un lado del cuadrado">
+            <button onclick="cuadrado()">Calcular</button>
+            <br>
+            <br>
+            <label for="resultadoArea">Area del cuadrado:</label>
+            <input type="text" id="resultadoArea" placeholder="Área cuadrado" readonly>
+            <br>
+            <label for="resultadoPerimetro">Perimetro total:</label>
+            <input type="text" id="resultadoPerimetro" placeholder="Perimetro cuadrado" readonly>
+            
+        </div>
+        <div class="espacio">
+            <h1>Numero de dos digitos</h1>
+            <br>
+            <label for="numerodosdigitos">Numero de dos digitos</label>
+            <input type="number" id="numerodosdigitos" placeholder="Ingrese un numero de dos digitos">
+            <button onclick="dosdigitos()" >Calcular</button>
+            <br><br>
+            <label for="decenas">Decenas:</label>
+            <input type="number"  id="decenas" readonly>
+            <br>
+            <label for="unidades">Unidades:</label>
+            <input type="number" id="unidades" readonly>
+        </div>
+        <div class="espacio">
+            <h1>Calculador ingredientes</h1>
+            <br>
+            <label for="numPersonas">Ingrese el numero de personas: </label>
+            <input type="number"  id="numPersonas" placeholder="Ingrese el numero total de personas">
+            <br><br>
+            <button onclick="calculIngredientes()">CALCULAR</button>
+            <br><br>
+            <label for="papas">Papas: </label>
+            <input type="text" id="papas" placeholder="Numero de papas" readonly>
+            <br>
+            <label for="huevitos">Huevos: </label>
+            <input type="text" id="huevitos" placeholder="numero de huevos" readonly>
+            <br>
+            <label for="lacebolla">Cebollas: </label>
+            <input type="text" id="lacebolla" placeholder="numero de cebollas" readonly>
+
+        </div>
+        <div class="espacio">
+            <h1>Adivinar el numero</h1> <br>
+            <label for="entrada">Ingrese un numero entre 0 y 100</label>
+            <input type="number" id="entrada" placeholder="Ingrese un numero">
+            <button onclick="adivinanza()">Adivina</button>
+            <br>
+            <br>
+            <label for="salida">Resultado:</label>
+            <input type="text" id="salida" readonly>
+            <br>
+            <br>
+            <h4 id="intentos"> </h4> <br>
+            <h4 id="lista"> </h4> <br>
+        </div>
+        <div class="espacio">
+            <h1>Serie Fibonacci</h1> <br>
+            <label for="series">Ingrese el numero de secuencias que desea ver: </label>
+            <input type="number" id="series"> <br><br>
+            <button onclick="Fibonacci()">Mostrar</button> <br><br>
+            <h4 id="resultadoF"></h4>
+        </div>
+        <div class="espacio">
+            <h1>Mayor, Menor o Igual</h1><br>
+            <label for="primerN">Ingrese el primer numero: </label>
+            <input type="number" id="primerN"><br>
+            <label for="segundoN">Ingrese el segundo numero: </label>
+            <input type="number" id="segundoN"><br><br>
+            <button onclick="MayorIgual()">Mostrar</button><br><br>
+            
+            <input type="text" id="resultadoN2" readonly>
+        </div>
+        <div class="espacio">
+            <h1>Factorial de un numero</h1><br>
+            <label for="factorial">Ingrese un numero: </label>
+            <input type="number" id="factorial" placeholder="Numero entero no negativo"><br><br>
+            <button onclick="calcularF()">Calcular</button><br><br>
+            <h4 id="resultadoFactorial"> </h4>
+            <h4 id="resultadoFactorial2"> </h4>
+            
+        </div>
+        <div class="espacio">
+            <h1>Multiplos de 6</h1><br>
+            <h3>Ingrese dos numeros:</h3>
+            <label for="numero1">Primer numero:</label>
+            <input type="number" id="numero1"><br>
+            <label for="numero2">Segundo numero:</label>
+            <input type="number" id="numero2"><br><br>
+            <button onclick="multiplos()">Mostrar</button><br><br>
+            <h4 id="resultadoMultiplos"> </h4>
+        </div>
+        <div class="espacio">
+            <h1>Arreglo con 20 números entre 0 y 100</h1><br>
+            <p>Genere el arreglo de 20 numeros para separar pares e impares</p><br>
+            <button onclick="arreglo20()">Generar</button><br><br><br>
+            <h4 id="principal"></h4><br>
+            <h4 id="pares"></h4>
+            <h4 id="impares"></h4>
+        </div>
+        <div class="espacio">
+            <h1>Arreglo con 10 numeros entre 10 y 20</h1><br>
+            <p>Genere el arreglo de 10 numeros para eliminar los multiplos de 3</p><br>
+            <button onclick="arreglo10()">Generar</button><br><br>
+            <h4 id="arreglo"></h4><br>
+            <h4 id="resultadoA"></h4>
+        </div>
+        <div class="espacio">
+            <h1>Área triangulo</h1><br>
+            <p>Ingrese las medidas de los lados del triangulo para calcular el área y definir el tipo</p><br>
+            <label for="a">Lado A:</label>
+            <input type="number" id="a">cm <br>
+            <label for="b">Lado B:</label>
+            <input type="number" id="b">cm <br>
+            <label for="c">Lado C:</label>
+            <input type="number" id="c">cm<br><br>
+            <button onclick="triangulo()">Calcular</button><br><br>
+            <h4 id="areaT"></h4><br>
+            <h4 id="tipoT"></h4>
+        </div>
+        <div class="espacio">
+            <h1>Carácteres de la palabra</h1><br>
+            <label for="palabra">Ingrese varias palabras:</label>
+            <input type="text" id="palabra" placeholder="EJ:Jhon y Juanito">
+            <br>
+            <br>
+            <button onclick="contador()">Procesar</button><br><br>
+            <h4 id="principalP"></h4><br>
+            <h4 id="long"></h4><br>
+            <h4 id="total"></h4><br>
+        </div>
+        <div class="espacio">
+            <h1>Arreglo invertido</h1><br>
+            <p>Genere el arreglo de 10 numeros para invertir su contenido</p><br>
+            <button onclick="arregloI()">Generar</button><br><br>
+            <h4 id="original"></h4><br>
+            <h4 id="Imanual"></h4><br>
+            <h4 id="Ireverse"></h4><br>
+        </div>
+        <div class="espacio">
+            <h1>Calculadora</h1><br>
+            <input type="radio" name="e" value="suma"> Suma
+            <input type="radio" name="e" value="resta"> Resta
+            <input type="radio" name="e" value="multiplicar"> Multiplicación
+            <input type="radio" name="e" value="division"> División <br><br>
+            <label for="n1">Primer numero:</label>
+            <input type="number" id="n1">
+            <label for="n2">Segundo numero:</label>
+            <input type="number" id="n2"><br><br>
+            <button onclick="calcular()">Calcular</button><br><br>
+            <h4 id="resultadoC"></h4>
+        </div>
+
+</div>
+</main>
+</body>
+
+<script src="../js/ejerciciosindex2.js"></script>
+</html>
