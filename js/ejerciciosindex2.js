@@ -111,7 +111,7 @@ function calcularFactorial(){
     let resultadoF = 1
 
     if (numeroF < 0){   
-        document.getElementById("resultadoFactorial").textContent="Error, ingrese un numero no negativo"
+        document.getElementById("resultadoFactorial").textContent="Error"
         return
     }
 
