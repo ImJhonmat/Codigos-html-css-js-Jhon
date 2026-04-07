@@ -256,5 +256,5 @@ function calculadora(){
     }else if(opcion.value == "division"){
         m= a/b
     }
-    document.getElementById("resultadoC").textContent= "Resultado: " + m
+    document.getElementById("resultadoC").textContent= "Resultado " + m
 }
