@@ -13,7 +13,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  animation: rainbowMove 5s linear infinite;
+  animation: rainbowMove 3.85s linear infinite;
 }
 
 @keyframes rainbowMove {
@@ -29,7 +29,7 @@
 body {
   background-image: url("../fondo/e4e7d819f6e3eb4a057902ca8f161068.gif");
   background-size: cover;
-  animation: moverFondo 10s linear infinite;
+  animation: moverFondo 5s linear infinite;
 }
 
 @keyframes moverFondo {
@@ -45,12 +45,14 @@ body {
     margin-bottom: 20px;
 }
 #contenedor{
+    background-image: url("../fondo/e4e7d819f6e3eb4a057902ca8f161068.gif");
+    animation: moverFondo 120s linear infinite;
     display: grid;
     grid-template-columns: repeat(3,1fr)/*Divide 3 columnas*/;
     gap: 10px;
     margin-right: 20px;
     margin-left: 20px;
-    background-color: rgb(35, 111, 58);
+    
 }
 
 
