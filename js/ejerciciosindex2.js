@@ -110,7 +110,7 @@ function calcularFactorial(){
     let numeroF = parseInt(document.getElementById("factorial").value)
     let resultadoF = 1
 
-    if (numeroF < 0){   /*evitar numeros negativos*/
+    if (numeroF < 0){   
         document.getElementById("resultadoFactorial").textContent="Error, ingrese un numero no negativo"
         return
     }
@@ -196,8 +196,8 @@ function Areatriangulo(){
         tipo = "Isósceles"
     } else{ tipo = "Escaleno"}
 
-    let s = (a+b+c) /2 /*formula de Herón*/
-    let area = Math.sqrt(s*(s-a)*(s-b)*(s-c)) /*funcion para sacar la raiz cuadrada*/
+    let s = (a+b+c) /2
+    let area = Math.sqrt(s*(s-a)*(s-b)*(s-c)) 
     let redondeo = Math.round(area)
 
     document.getElementById("areaT").textContent= "El área del triangulo es: " + redondeo + "cm2"
@@ -227,10 +227,10 @@ function GenerarregloI(){
         let aleat = Math.floor(Math.random() * 100)
         original.push(aleat)
     }
-    for(let i=original.length -1; i>=0; i--){   /*invertir manual*/
+    for(let i=original.length -1; i>=0; i--){   
         manual.push(original[i])
     }
-    let funcion = original.reverse()    /*invertir con reverse*/
+    let funcion = original.reverse()   
 
     document.getElementById("original").textContent= "Original: " + original
     document.getElementById("Imanual").textContent= "Invertido manual: " + manual
