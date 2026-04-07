@@ -73,7 +73,7 @@ function adivinanza(){
     document.getElementById("intentos").textContent = "Intentos restantes: " + intentos
 }
 
-function Fibonacci(){
+function EjerFibonacci(){
     let n = parseInt(document.getElementById("series").value)
 
     let a = 0
@@ -90,7 +90,7 @@ function Fibonacci(){
     document.getElementById("resultadoF").textContent  = serie
 }
 
-function MayorIgual(){
+function MayoroIgual(){
     let n1 = parseInt(document.getElementById("primerN").value)
     let n2 = parseInt(document.getElementById("segundoN").value)
 
@@ -106,7 +106,7 @@ function MayorIgual(){
 
 }
 
-function calcularF(){
+function calcularFactorial(){
     let numeroF = parseInt(document.getElementById("factorial").value)
     let resultadoF = 1
 
@@ -122,7 +122,7 @@ function calcularF(){
     document.getElementById("resultadoFactorial2").textContent= "El factorial de " + numeroF + " es: " + resultadoF
 }
 
-function multiplos(){
+function multiplosdeseis(){
     let a = parseInt(document.getElementById("numero1").value)
     let b = parseInt(document.getElementById("numero2").value)
     let multiplos = []
@@ -143,7 +143,7 @@ function multiplos(){
         "Entre " + a + " y " + b + " Los Múltiplos de 6 son : " + multiplos
 }
 
-function arreglo20(){
+function arregloN20(){
     let principal = []
     let par = []
     let impar = []
@@ -165,7 +165,7 @@ function arreglo20(){
     document.getElementById("impares").textContent= "Impares: " + impar
 }
 
-function arreglo10(){
+function arregloN10(){
     let principalA = []
     let multiplos = []
 
@@ -183,7 +183,7 @@ function arreglo10(){
     document.getElementById("resultadoA").textContent= "Sin los multiplos: " + multiplos
 }
 
-function triangulo(){
+function Areatriangulo(){
     let a = parseInt(document.getElementById("a").value)
     let b = parseInt(document.getElementById("b").value)
     let c = parseInt(document.getElementById("c").value)
@@ -203,7 +203,7 @@ function triangulo(){
     document.getElementById("areaT").textContent= "El área del triangulo es: " + redondeo + "cm2"
     document.getElementById("tipoT").textContent= "El tipo de triangulo es: " + tipo
 }
-function contador(){
+function contadorPalabras(){
     let p = document.getElementById("palabra").value
     let espacio = p.split(" ")
     let longitud = []
@@ -219,7 +219,7 @@ function contador(){
     document.getElementById("long").textContent= "Cantidad de letras: " + longitud
     document.getElementById("total").textContent= "Total de carácteres: " + totalP
 }
-function arregloI(){
+function GenerarregloI(){
     let original = []
     let manual = []
 
@@ -236,7 +236,7 @@ function arregloI(){
     document.getElementById("Imanual").textContent= "Invertido manual: " + manual
     document.getElementById("Ireverse").textContent= "Invertido con reverse: " + funcion
 }
-function calcular(){
+function calculadora(){
     let a = parseInt(document.getElementById("n1").value)
     let b = parseInt(document.getElementById("n2").value)
     let opcion = document.querySelector('input[name="e"]:checked')
