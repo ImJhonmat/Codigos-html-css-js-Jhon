@@ -1,0 +1,496 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Activity Diagram - Eliminar servicios del catálogo - Scenario</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		NAIAPP RF	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p>
+<a href="UseCaseDiagram_6FtPwjmFYEDK_glr.html" class="PageParentTitle">Sistema NaiApp : System</a><span class="PageParentTitle">&nbsp;.&nbsp;</span><a href="UseCaseDiagram_6FtPwjmFYEDK_glr.html" class="PageParentTitle">Eliminar servicios del catálogo : Use Case</a>	</p>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Activity Diagram - Eliminar servicios del catálogo - Scenario		</span>
+<a onclick="javascript: showVpLink('NAIAPP RF ultimo 2.7.vpp://diagram/CtpD.zmGAqACCHGx', 'Eliminar servicios del cat&#xe1;logo - Scenario\nNAIAPP RF ultimo 2.7.vpp://diagram/CtpD.zmGAqACCHGx', 'Eliminar servicios del cat&#xe1;logo - Scenario', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|0.0|0.0|20.0|20.0|ActivityFinalNode_HdpD_zmGAqACCHIc.html|ActivityFinalNode_HdpD_zmGAqACCHIc.html|HdpD.zmGAqACCHId" id="optionHdpD.zmGAqACCHId">Unnamed Activity Final Node : Activity Final Node</option>
+<option value="shape|0.0|0.0|369.0|40.0|ActivityAction_rdpD_zmGAqACCHIV.html|ActivityAction_rdpD_zmGAqACCHIV.html|rdpD.zmGAqACCHIW" id="optionrdpD.zmGAqACCHIW">11. Muestra mensaje: “Servicio eliminado o desctivado correctamente”. : Action</option>
+<option value="shape|0.0|0.0|20.0|40.0|MergeNode_zdpD_zmGAqACCHIM.html|MergeNode_zdpD_zmGAqACCHIM.html|LdpD.zmGAqACCHIN" id="optionLdpD.zmGAqACCHIN">Unnamed Merge Node : Merge Node</option>
+<option value="shape|0.0|0.0|264.0|40.0|ActivityAction_TdpD_zmGAqACCHIG.html|ActivityAction_TdpD_zmGAqACCHIG.html|zdpD.zmGAqACCHIH" id="optionzdpD.zmGAqACCHIH">10.1.  Cambia estado a “Inactivo” o a "eliminado". : Action</option>
+<option value="shape|0.0|0.0|20.0|40.0|DecisionNode_jdpD_zmGAqACCHIA.html|DecisionNode_jdpD_zmGAqACCHIA.html|TdpD.zmGAqACCHIB" id="optionTdpD.zmGAqACCHIB">10. Si no hay citas activas:? : Decision Node</option>
+<option value="shape|0.0|0.0|20.0|40.0|MergeNode_9dpD_zmGAqACCHH3.html|MergeNode_9dpD_zmGAqACCHH3.html|DdpD.zmGAqACCHH4" id="optionDdpD.zmGAqACCHH4">Unnamed Merge Node : Merge Node</option>
+<option value="shape|0.0|0.0|592.0|40.0|ActivityAction_tdpD_zmGAqACCHHw.html|ActivityAction_tdpD_zmGAqACCHHw.html|tdpD.zmGAqACCHHx" id="optiontdpD.zmGAqACCHHx">9.1. El sistema muestra mensaje de aviso “No puede eliminar o desactivar este servicio porque hay citas asociadas”. : Action</option>
+<option value="shape|0.0|0.0|20.0|40.0|DecisionNode_1dpD_zmGAqACCHHq.html|DecisionNode_1dpD_zmGAqACCHHq.html|NdpD.zmGAqACCHHr" id="optionNdpD.zmGAqACCHHr">9. Si hay citas activas con ese servicio? : Decision Node</option>
+<option value="shape|0.0|0.0|236.0|40.0|ActivityAction_ldpD_zmGAqACCHHj.html|ActivityAction_ldpD_zmGAqACCHHj.html|ldpD.zmGAqACCHHk" id="optionldpD.zmGAqACCHHk">8. El sistema verifica si hay citas asociadas. : Action</option>
+<option value="shape|0.0|0.0|151.0|40.0|ActivityAction_FdpD_zmGAqACCHHd.html|ActivityAction_FdpD_zmGAqACCHHd.html|FdpD.zmGAqACCHHe" id="optionFdpD.zmGAqACCHHe">7. Administrador confirma. : Action</option>
+<option value="shape|0.0|0.0|246.0|40.0|ActivityAction_5dpD_zmGAqACCHHX.html|ActivityAction_5dpD_zmGAqACCHHX.html|5dpD.zmGAqACCHHY" id="option5dpD.zmGAqACCHHY">6. Sistema muestra mensaje de confirmación. : Action</option>
+<option value="shape|0.0|0.0|246.0|40.0|ActivityAction_ZdpD_zmGAqACCHHR.html|ActivityAction_ZdpD_zmGAqACCHHR.html|ZdpD.zmGAqACCHHS" id="optionZdpD.zmGAqACCHHS">5. Hace clic en botón “Eliminar” o "desactivar" : Action</option>
+<option value="shape|0.0|0.0|132.0|40.0|ActivityAction_pdpD_zmGAqACCHHL.html|ActivityAction_pdpD_zmGAqACCHHL.html|pdpD.zmGAqACCHHM" id="optionpdpD.zmGAqACCHHM">4. Selecciona servicio. : Action</option>
+<option value="shape|0.0|0.0|208.0|40.0|ActivityAction_xdpD_zmGAqACCHHF.html|ActivityAction_xdpD_zmGAqACCHHF.html|JdpD.zmGAqACCHHG" id="optionJdpD.zmGAqACCHHG">3. Administrador accede a “Servicios”. : Action</option>
+<option value="shape|0.0|0.0|111.0|40.0|ActivityAction_RdpD_zmGAqACCHG_.html|ActivityAction_RdpD_zmGAqACCHG_.html|RdpD.zmGAqACCHHA" id="optionRdpD.zmGAqACCHHA">2. Inicio de sesión : Action</option>
+<option value="shape|0.0|0.0|350.0|40.0|ActivityAction_XtpD_zmGAqACCHG4.html|ActivityAction_XtpD_zmGAqACCHG4.html|odpD.zmGAqACCHG5" id="optionodpD.zmGAqACCHG5">1. El usuario igresa el URL o ingresa por medio de LINK de Naiapp : Action</option>
+<option value="shape|0.0|0.0|22.0|20.0|InitialNode_1tpD_zmGAqACCHG0.html|InitialNode_1tpD_zmGAqACCHG0.html|9tpD.zmGAqACCHG1" id="option9tpD.zmGAqACCHG1">Unnamed Initial Node : Initial Node</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Eliminar_servicios_del_catlogo_Scenario.png" usemap="#diagram_map" class="Image" width="596" height="59"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_hdpD.zmGAqACCHG9_default" href="ControlFlow__dpD_zmGAqACCHG8.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=9tpD.zmGAqACCHG1/Unnamed/InitialNode'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=odpD.zmGAqACCHG5/1. El usuario igresa el URL o ingresa por medio de LINK de Naiapp/Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_xdpD.zmGAqACCHHD_default" href="ControlFlow_xdpD_zmGAqACCHHC.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=odpD.zmGAqACCHG5/1. El usuario igresa el URL o ingresa por medio de LINK de Naiapp/Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=RdpD.zmGAqACCHHA/2. Inicio de sesi&#xf3;n/Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_JdpD.zmGAqACCHHJ_default" href="ControlFlow_JdpD_zmGAqACCHHI.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=RdpD.zmGAqACCHHA/2. Inicio de sesi&#xf3;n/Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=JdpD.zmGAqACCHHG/3. Administrador accede a &#x201c;Servicios&#x201d;./Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_ZdpD.zmGAqACCHHP_default" href="ControlFlow_pdpD_zmGAqACCHHO.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=JdpD.zmGAqACCHHG/3. Administrador accede a &#x201c;Servicios&#x201d;./Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=pdpD.zmGAqACCHHM/4. Selecciona servicio./Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_5dpD.zmGAqACCHHV_default" href="ControlFlow_ZdpD_zmGAqACCHHU.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=pdpD.zmGAqACCHHM/4. Selecciona servicio./Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ZdpD.zmGAqACCHHS/5. Hace clic en bot&#xf3;n &#x201c;Eliminar&#x201d; o &#x22;desactivar&#x22;/Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_FdpD.zmGAqACCHHb_default" href="ControlFlow_5dpD_zmGAqACCHHa.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ZdpD.zmGAqACCHHS/5. Hace clic en bot&#xf3;n &#x201c;Eliminar&#x201d; o &#x22;desactivar&#x22;/Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=5dpD.zmGAqACCHHY/6. Sistema muestra mensaje de confirmaci&#xf3;n./Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_ldpD.zmGAqACCHHh_default" href="ControlFlow_FdpD_zmGAqACCHHg.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=5dpD.zmGAqACCHHY/6. Sistema muestra mensaje de confirmaci&#xf3;n./Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=FdpD.zmGAqACCHHe/7. Administrador confirma./Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_VdpD.zmGAqACCHHn_default" href="ControlFlow_VdpD_zmGAqACCHHm.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=FdpD.zmGAqACCHHe/7. Administrador confirma./Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ldpD.zmGAqACCHHk/8. El sistema verifica si hay citas asociadas./Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_NdpD.zmGAqACCHHu_default" href="ControlFlow_NdpD_zmGAqACCHHt.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ldpD.zmGAqACCHHk/8. El sistema verifica si hay citas asociadas./Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=NdpD.zmGAqACCHHr/9. Si hay citas activas con ese servicio?/DecisionNode')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_ddpD.zmGAqACCHH0_default" href="ControlFlow_tdpD_zmGAqACCHHz.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=NdpD.zmGAqACCHHr/9. Si hay citas activas con ese servicio?/DecisionNode'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=tdpD.zmGAqACCHHx/9.1. El sistema muestra mensaje de aviso &#x201c;No puede eliminar o desactivar este servicio porque hay citas asociadas&#x201d;./Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_DdpD.zmGAqACCHH7_default" href="ControlFlow_DdpD_zmGAqACCHH6.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=NdpD.zmGAqACCHHr/9. Si hay citas activas con ese servicio?/DecisionNode'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=DdpD.zmGAqACCHH4/Unnamed/MergeNode')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_jdpD.zmGAqACCHH._default" href="ControlFlow_jdpD_zmGAqACCHH9.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=tdpD.zmGAqACCHHx/9.1. El sistema muestra mensaje de aviso &#x201c;No puede eliminar o desactivar este servicio porque hay citas asociadas&#x201d;./Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=DdpD.zmGAqACCHH4/Unnamed/MergeNode')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_TdpD.zmGAqACCHIE_default" href="ControlFlow_TdpD_zmGAqACCHID.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=DdpD.zmGAqACCHH4/Unnamed/MergeNode'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=TdpD.zmGAqACCHIB/10. Si no hay citas activas:?/DecisionNode')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_zdpD.zmGAqACCHIK_default" href="ControlFlow_zdpD_zmGAqACCHIJ.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=TdpD.zmGAqACCHIB/10. Si no hay citas activas:?/DecisionNode'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=zdpD.zmGAqACCHIH/10.1.  Cambia estado a &#x201c;Inactivo&#x201d; o a &#x22;eliminado&#x22;./Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_LdpD.zmGAqACCHIQ_default" href="ControlFlow_LdpD_zmGAqACCHIP.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=TdpD.zmGAqACCHIB/10. Si no hay citas activas:?/DecisionNode'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=LdpD.zmGAqACCHIN/Unnamed/MergeNode')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_rdpD.zmGAqACCHIT_default" href="ControlFlow_LdpD_zmGAqACCHIS.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=zdpD.zmGAqACCHIH/10.1.  Cambia estado a &#x201c;Inactivo&#x201d; o a &#x22;eliminado&#x22;./Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=LdpD.zmGAqACCHIN/Unnamed/MergeNode')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_bdpD.zmGAqACCHIZ_default" href="ControlFlow_bdpD_zmGAqACCHIY.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=LdpD.zmGAqACCHIN/Unnamed/MergeNode'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=rdpD.zmGAqACCHIW/11. Muestra mensaje: &#x201c;Servicio eliminado o desctivado correctamente&#x201d;./Action')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="" coords2="" shape="poly" alt=":Control Flow" id="areadiagram_map_ndpD.zmGAqACCHIg_default" href="ControlFlow_HdpD_zmGAqACCHIf.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=rdpD.zmGAqACCHIW/11. Muestra mensaje: &#x201c;Servicio eliminado o desctivado correctamente&#x201d;./Action'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=HdpD.zmGAqACCHId/Unnamed/ActivityFinial')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 20, 32.0" coords2="0, 0, 20, 32.0" shape="rect" alt=":Activity Final Node" id="areadiagram_map_HdpD.zmGAqACCHId_default" href="ActivityFinalNode_HdpD_zmGAqACCHIc.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 20, 20',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Scenario/GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ndpD.zmGAqACCHIg/Unnamed/ActivityControlFlow'),new Array()),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 20, 20')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 20, 52.0" coords2="0, 0, 20, 52.0" shape="rect" alt="9. Si hay citas activas con ese servicio?:Decision Node" id="areadiagram_map_NdpD.zmGAqACCHHr_default" href="DecisionNode_1dpD_zmGAqACCHHq.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 20, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Si hay citas activas con ese servicio/GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=NdpD.zmGAqACCHHu/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ddpD.zmGAqACCHH0/Unnamed/ActivityControlFlow','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=DdpD.zmGAqACCHH7/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 20, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 20, 52.0" coords2="0, 0, 20, 52.0" shape="rect" alt=":Merge Node" id="areadiagram_map_DdpD.zmGAqACCHH4_default" href="MergeNode_9dpD_zmGAqACCHH3.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 20, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Si hay citas activas con ese servicio/GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=DdpD.zmGAqACCHH7/Unnamed/ActivityControlFlow','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=jdpD.zmGAqACCHH./Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=TdpD.zmGAqACCHIE/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 20, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 20, 52.0" coords2="0, 0, 20, 52.0" shape="rect" alt="10. Si no hay citas activas:?:Decision Node" id="areadiagram_map_TdpD.zmGAqACCHIB_default" href="DecisionNode_jdpD_zmGAqACCHIA.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 20, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=TdpD.zmGAqACCHIE/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=zdpD.zmGAqACCHIK/Unnamed/ActivityControlFlow','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=LdpD.zmGAqACCHIQ/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 20, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 20, 52.0" coords2="0, 0, 20, 52.0" shape="rect" alt=":Merge Node" id="areadiagram_map_LdpD.zmGAqACCHIN_default" href="MergeNode_zdpD_zmGAqACCHIM.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 20, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=LdpD.zmGAqACCHIQ/Unnamed/ActivityControlFlow','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=rdpD.zmGAqACCHIT/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=bdpD.zmGAqACCHIZ/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 20, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 22, 32.0" coords2="0, 0, 22, 32.0" shape="rect" alt=":Initial Node" id="areadiagram_map_9tpD.zmGAqACCHG1_default" href="InitialNode_1tpD_zmGAqACCHG0.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 22, 20',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Scenario/GenericModel'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=hdpD.zmGAqACCHG9/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 22, 20')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 111, 52.0" coords2="0, 0, 111, 52.0" shape="rect" alt="2. Inicio de sesión:Action" id="areadiagram_map_RdpD.zmGAqACCHHA_default" href="ActivityAction_RdpD_zmGAqACCHG_.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 111, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/El usuario inicia sesi&#xf3;n/GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=xdpD.zmGAqACCHHD/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=JdpD.zmGAqACCHHJ/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 111, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 132, 52.0" coords2="0, 0, 132, 52.0" shape="rect" alt="4. Selecciona servicio.:Action" id="areadiagram_map_pdpD.zmGAqACCHHM_default" href="ActivityAction_pdpD_zmGAqACCHHL.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 132, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Selecciona el servicio deseado./GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ZdpD.zmGAqACCHHP/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=5dpD.zmGAqACCHHV/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 132, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 151, 52.0" coords2="0, 0, 151, 52.0" shape="rect" alt="7. Administrador confirma.:Action" id="areadiagram_map_FdpD.zmGAqACCHHe_default" href="ActivityAction_FdpD_zmGAqACCHHd.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 151, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Administrador confirma la acci&#xf3;n./GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ldpD.zmGAqACCHHh/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=VdpD.zmGAqACCHHn/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 151, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 208, 52.0" coords2="0, 0, 208, 52.0" shape="rect" alt="3. Administrador accede a “Servicios”.:Action" id="areadiagram_map_JdpD.zmGAqACCHHG_default" href="ActivityAction_xdpD_zmGAqACCHHF.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 208, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Administrador accede a &#x201c;Servicios&#x201d;./GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=JdpD.zmGAqACCHHJ/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ZdpD.zmGAqACCHHP/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 208, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 236, 52.0" coords2="0, 0, 236, 52.0" shape="rect" alt="8. El sistema verifica si hay citas asociadas.:Action" id="areadiagram_map_ldpD.zmGAqACCHHk_default" href="ActivityAction_ldpD_zmGAqACCHHj.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 236, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/El sistema verifica si hay citas asociadas./GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=VdpD.zmGAqACCHHn/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=NdpD.zmGAqACCHHu/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 236, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 246, 52.0" coords2="0, 0, 246, 52.0" shape="rect" alt="5. Hace clic en botón “Eliminar” o "desactivar":Action" id="areadiagram_map_ZdpD.zmGAqACCHHS_default" href="ActivityAction_ZdpD_zmGAqACCHHR.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 246, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/Hace clic en bot&#xf3;n &#x201c;Eliminar&#x201d; (icono de papelera)./GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=5dpD.zmGAqACCHHV/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=FdpD.zmGAqACCHHb/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 246, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 246, 52.0" coords2="0, 0, 246, 52.0" shape="rect" alt="6. Sistema muestra mensaje de confirmación.:Action" id="areadiagram_map_5dpD.zmGAqACCHHY_default" href="ActivityAction_5dpD_zmGAqACCHHX.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 246, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=FdpD.zmGAqACCHHb/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ldpD.zmGAqACCHHh/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 246, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 264, 52.0" coords2="0, 0, 264, 52.0" shape="rect" alt="10.1.  Cambia estado a “Inactivo” o a "eliminado".:Action" id="areadiagram_map_zdpD.zmGAqACCHIH_default" href="ActivityAction_TdpD_zmGAqACCHIG.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 264, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=zdpD.zmGAqACCHIK/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=rdpD.zmGAqACCHIT/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 264, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 350, 52.0" coords2="0, 0, 350, 52.0" shape="rect" alt="1. El usuario igresa el URL o ingresa por medio de LINK de Naiapp:Action" id="areadiagram_map_odpD.zmGAqACCHG5_default" href="ActivityAction_XtpD_zmGAqACCHG4.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 350, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/El usuario igresa el URL o ingresa por medio de LINK de Naiapp/GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=hdpD.zmGAqACCHG9/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=xdpD.zmGAqACCHHD/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 350, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 369, 52.0" coords2="0, 0, 369, 52.0" shape="rect" alt="11. Muestra mensaje: “Servicio eliminado o desctivado correctamente”.:Action" id="areadiagram_map_rdpD.zmGAqACCHIW_default" href="ActivityAction_rdpD_zmGAqACCHIV.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 369, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=bdpD.zmGAqACCHIZ/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ndpD.zmGAqACCHIg/Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 369, 40')" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="0, 0, 592, 52.0" coords2="0, 0, 592, 52.0" shape="rect" alt="9.1. El sistema muestra mensaje de aviso “No puede eliminar o desactivar este servicio porque hay citas asociadas”.:Action" id="areadiagram_map_tdpD.zmGAqACCHHx_default" href="ActivityAction_tdpD_zmGAqACCHHw.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','0, 0, 592, 40',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('null/El sistema muestra mensaje de aviso &#x201c;No puede eliminar o desactivar este servicio porque hay citas asociadas&#x201d;./GenericModel','ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=ddpD.zmGAqACCHH0/Unnamed/ActivityControlFlow'),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html?shapeid=jdpD.zmGAqACCHH./Unnamed/ActivityControlFlow')),hideReferenceIcon(),hideSubdiagramIcon(),showTransitorIcon('diagram', '0, 0, 592, 40')" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/ActivityFinial.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/ActivityFinial.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityFinalNode_HdpD_zmGAqACCHIc.html" class="ItemLink">N/A : Activity Final Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_rdpD_zmGAqACCHIV.html" class="ItemLink">11. Muestra mensaje: “Servicio eliminado o desctivado correctamente”. : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/MergeNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/MergeNode.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="MergeNode_zdpD_zmGAqACCHIM.html" class="ItemLink">N/A : Merge Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_TdpD_zmGAqACCHIG.html" class="ItemLink">10.1.  Cambia estado a “Inactivo” o a "eliminado". : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/DecisionNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/DecisionNode.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="DecisionNode_jdpD_zmGAqACCHIA.html" class="ItemLink">10. Si no hay citas activas:? : Decision Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/MergeNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/MergeNode.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="MergeNode_9dpD_zmGAqACCHH3.html" class="ItemLink">N/A : Merge Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_tdpD_zmGAqACCHHw.html" class="ItemLink">9.1. El sistema muestra mensaje de aviso “No puede eliminar o desactivar este servicio porque hay citas asociadas”. : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/DecisionNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/DecisionNode.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="DecisionNode_1dpD_zmGAqACCHHq.html" class="ItemLink">9. Si hay citas activas con ese servicio? : Decision Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_ldpD_zmGAqACCHHj.html" class="ItemLink">8. El sistema verifica si hay citas asociadas. : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_FdpD_zmGAqACCHHd.html" class="ItemLink">7. Administrador confirma. : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_5dpD_zmGAqACCHHX.html" class="ItemLink">6. Sistema muestra mensaje de confirmación. : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_ZdpD_zmGAqACCHHR.html" class="ItemLink">5. Hace clic en botón “Eliminar” o "desactivar" : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_pdpD_zmGAqACCHHL.html" class="ItemLink">4. Selecciona servicio. : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_xdpD_zmGAqACCHHF.html" class="ItemLink">3. Administrador accede a “Servicios”. : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_RdpD_zmGAqACCHG_.html" class="ItemLink">2. Inicio de sesión : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Action.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Action.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="ActivityAction_XtpD_zmGAqACCHG4.html" class="ItemLink">1. El usuario igresa el URL o ingresa por medio de LINK de Naiapp : Action</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/InitialNode.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/InitialNode.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="InitialNode_1tpD_zmGAqACCHG0.html" class="ItemLink">N/A : Initial Node</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		NAIAPP RF	</div>
+</body>
+</html>

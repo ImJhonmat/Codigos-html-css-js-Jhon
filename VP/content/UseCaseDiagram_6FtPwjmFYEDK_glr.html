@@ -1,0 +1,1242 @@
+<html>
+<head>
+	<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="report.css" type="text/css"/>
+	<title>Use Case Diagram - Use Case Diagram1</title>
+	<script type="text/javascript" src="report.js"></script>
+	<script type="text/javascript" src="link_popup.js"></script>
+	<script type="text/javascript" src="tooltip.js"></script>
+</head>
+<body style="margin-left: 10px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onload="initPage();initDiagram();initGridDiagram();">
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_top">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-top: 2px #FF0000 solid;" id="spotlight_bottom">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_left">
+	</div>
+	<div style="position:absolute; z-index:2; visibility:hidden;border-left: 2px #FF0000 solid;" id="spotlight_right">
+	</div>
+	<canvas width="100" style="position:absolute; z-index:2; visibility:hidden" id="spotlight_c" height="100">
+	</canvas>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesTop">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; width:100px; height:100px; z-index:1; visibility:hidden" id="spotLightResourcesRight">
+		<table border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td>
+<a href="#top"><img style="border:none" src="../images/icons/BackToTop.gif" alt="Back to top"/></a>				</td>
+			</tr>
+			<tr>
+				<td>
+<a href="javascript:clearSpotLightFromOpenSpecButton();"><img style="border:none" src="../images/icons/OpenSpecification.gif" alt="Open specification"/></a>				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute;z-index:4;visibility:hidden" id="linkPopupMenuLayer">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="linkPopupMenuTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="referenceIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Ref.gif" style="border:none" onclick="movePopupPositionToReferenceIconPosition();resetPopupForReference();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="subdiagramIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Subdiagram.gif" style="border:none" onclick="movePopupPositionToSubdiagramIconPosition();resetPopupForSubdiagram();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="transitorIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Transitor.gif" style="border:none" onclick="movePopupPositionToTransitorIconPosition();resetPopupForTransitor();switchPopupShowHideStatus();" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div style="position:absolute; z-index:1; visibility:hidden; " id="documentationIconLayer">
+		<table border="0" cellpadding="3" cellspacing="0" style="font-size:1;">
+			<tr>
+				<td>
+					<img src="../images/icons/Documentation.png" style="border:none" />				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="HeaderText">
+		NAIAPP RF	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="HeaderLine1">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine2">
+			</td>
+		</tr>
+		<tr>
+			<td class="HeaderLine3">
+			</td>
+		</tr>
+	</table>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="referencedBys">
+		<table border="0" width="100%" style="border-style:solid; border-width:1px; border-color:#000000; background:#FFFFFF; width:250px" id="referencedBysTable">
+		</table>
+	</div>
+	<div style="position:absolute; z-index:21; visibility:hidden" id="vplink">
+		<table border="1" cellpadding="0" cellspacing="0" bordercolor="#A9BFD3">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" width="100%" cellspacing="0">
+						<tr style="background:#DDDDDD">
+							<td style="font-size: 12px;" align="left">
+								<select onchange="vpLinkToggleName()" id="vplink-linkType">
+	<option value="Project Link">Project Link</option>
+	<option value="Page URL">Page URL</option>
+</select>
+							</td>
+							<td style="font-size: 12px;" align="right">
+								<input onclick="javascript: vpLinkToggleName()" id="vplink-checkbox" type="checkbox" />
+								<label for="vplink-checkbox">with Name</label>							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<textarea id="vplink-text" style="width: 348px; height: 60px; border-color: #7EADD9; outline: none;"></textarea>				</td>
+			</tr>
+		</table>
+	</div>
+	<p class="PageTitle">
+		<span id="PageTitleText">
+			Use Case Diagram - Use Case Diagram1		</span>
+<a onclick="javascript: showVpLink('NAIAPP RF ultimo 2.7.vpp://diagram/6FtPwjmFYEDK_glr', 'Use Case Diagram1\nNAIAPP RF ultimo 2.7.vpp://diagram/6FtPwjmFYEDK_glr', 'Use Case Diagram1', this); return false;" style="padding-left: 16px; font-size: 12px" href="#"><img src="../images/icons/link.png" border="0"> link</a>	</p>
+	<div style="position: relative; padding-bottom: 20px;">
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: absolute; top: 0; left: 0; z-index: 20;" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),hideLinkPopup(),hideReferencedBys();">
+			<tr>
+				<td>
+<span class="TableContent">Jump to:</span>					<select id="SelectShape" class="TableContent" onChange="scrollWin('diagram', this.value);hideLinkPopup();showSpotLight('diagram', this.value)">
+<option value="">Please select a model element</option>
+<option value="shape|101.0|2.0|852.0|1209.0|System_IRSvwjmFYEDK_gl5.html|System_IRSvwjmFYEDK_gl5.html|QRSvwjmFYEDK_gl4" id="optionQRSvwjmFYEDK_gl4">Sistema NaiApp : System</option>
+<option value="shape|1151.0|1037.0|30.0|60.0|Actor_Lj0fwjmFYEDK_gnk.html|Actor_Lj0fwjmFYEDK_gnk.html|zj0fwjmFYEDK_gnj" id="optionzj0fwjmFYEDK_gnj">Cliente : Actor</option>
+<option value="shape|1062.0|54.0|30.0|60.0|Actor__LR_wjmFYEDK_gpI.html|Actor__LR_wjmFYEDK_gpI.html|.LR_wjmFYEDK_gpH" id="option.LR_wjmFYEDK_gpH">Administrador : Actor</option>
+<option value="shape|24.0|334.0|30.0|60.0|Actor_FoJ_wjmFYEDK_gpQ.html|Actor_FoJ_wjmFYEDK_gpQ.html|FoJ_wjmFYEDK_gpP" id="optionFoJ_wjmFYEDK_gpP">Profesional : Actor</option>
+<option value="shape|329.0|572.0|170.0|56.0|UseCase_KAyvwjmFYEDK_gmD.html|UseCase_KAyvwjmFYEDK_gmD.html|SAyvwjmFYEDK_gmC" id="optionSAyvwjmFYEDK_gmC">Agendar cita : Use Case</option>
+<option value="shape|176.0|572.0|89.0|40.0|UseCase_77cfwjmFYEDK_gn4.html|UseCase_77cfwjmFYEDK_gn4.html|77cfwjmFYEDK_gn3" id="option77cfwjmFYEDK_gn3">Validar disponibilidad : Use Case</option>
+<option value="shape|264.0|631.0|142.0|40.0|UseCase_fR__wjmFYEDK_goj.html|UseCase_fR__wjmFYEDK_goj.html|fR._wjmFYEDK_goi" id="optionfR._wjmFYEDK_goi">Consultar agenda de citas : Use Case</option>
+<option value="shape|599.0|814.0|107.0|40.0|UseCase_qeh_wjmFYEDK_go1.html|UseCase_qeh_wjmFYEDK_go1.html|t_AAIjmFYEDK_gsW" id="optiont_AAIjmFYEDK_gsW">Registrar nuevos servicios : Use Case</option>
+<option value="shape|329.0|143.0|190.0|56.0|UseCase_7oDkIjmFYEDK_gvS.html|UseCase_7oDkIjmFYEDK_gvS.html|7oDkIjmFYEDK_gvR" id="option7oDkIjmFYEDK_gvR">Registro de Usuarios : Use Case</option>
+<option value="shape|286.0|978.0|124.0|40.0|UseCase_pCl0IjmFYEDK_gwn.html|UseCase_pCl0IjmFYEDK_gwn.html|pCl0IjmFYEDK_gwm" id="optionpCl0IjmFYEDK_gwm">Actualizar información de perfil : Use Case</option>
+<option value="shape|301.0|1129.0|125.0|40.0|UseCase_0R90IjmFYEDK_gw5.html|UseCase_0R90IjmFYEDK_gw5.html|0R90IjmFYEDK_gw4" id="option0R90IjmFYEDK_gw4">Inhabilitar cuenta de usuario : Use Case</option>
+<option value="shape|319.0|1066.0|88.0|40.0|UseCase_BmP0IjmFYEDK_gxP.html|UseCase_BmP0IjmFYEDK_gxP.html|BmP0IjmFYEDK_gxO" id="optionBmP0IjmFYEDK_gxO">Buscar perfil de usuario : Use Case</option>
+<option value="shape|276.0|688.0|121.0|40.0|UseCase_hRrMIjmFYEDK_gzm.html|UseCase_hRrMIjmFYEDK_gzm.html|hRrMIjmFYEDK_gzl" id="optionhRrMIjmFYEDK_gzl">Reprogramar cita : Use Case</option>
+<option value="shape|266.0|746.0|152.0|40.0|UseCase_Pe3MIjmFYEDK_g0I.html|UseCase_Pe3MIjmFYEDK_g0I.html|3e3MIjmFYEDK_g0H" id="option3e3MIjmFYEDK_g0H">Cancelar cita programada : Use Case</option>
+<option value="shape|607.0|872.0|91.0|40.0|UseCase__RE6IjmFYEDK_g2l.html|UseCase__RE6IjmFYEDK_g2l.html|_RE6IjmFYEDK_g2k" id="option_RE6IjmFYEDK_g2k">Buscar servicios : Use Case</option>
+<option value="shape|598.0|930.0|110.0|40.0|UseCase_sIM6IjmFYEDK_g2_.html|UseCase_sIM6IjmFYEDK_g2_.html|sIM6IjmFYEDK_g2." id="optionsIM6IjmFYEDK_g2.">Actualizar detalles de servicios : Use Case</option>
+<option value="shape|597.0|1007.0|111.0|40.0|UseCase_ZLy6IjmFYEDK_g3R.html|UseCase_ZLy6IjmFYEDK_g3R.html|ZLy6IjmFYEDK_g3Q" id="optionZLy6IjmFYEDK_g3Q">Eliminar servicios del catálogo : Use Case</option>
+<option value="shape|729.0|494.0|133.0|40.0|UseCase_aWj6IjmFYEDK_g33.html|UseCase_aWj6IjmFYEDK_g33.html|aWj6IjmFYEDK_g32" id="optionaWj6IjmFYEDK_g32">Generar nuevos reportes de pagos : Use Case</option>
+<option value="shape|729.0|554.0|133.0|40.0|UseCase_43r6IjmFYEDK_g4J.html|UseCase_43r6IjmFYEDK_g4J.html|43r6IjmFYEDK_g4I" id="option43r6IjmFYEDK_g4I">Visualizar reportes generados de pagos : Use Case</option>
+<option value="shape|697.0|631.0|193.0|40.0|UseCase_tpIGIjmFYEDK_g4b.html|UseCase_tpIGIjmFYEDK_g4b.html|tpIGIjmFYEDK_g4a" id="optiontpIGIjmFYEDK_g4a">Editar parámetros de reportes generados de pagos : Use Case</option>
+<option value="shape|716.0|681.0|145.0|64.0|UseCase_ePsGIjmFYEDK_g4t.html|UseCase_ePsGIjmFYEDK_g4t.html|ePsGIjmFYEDK_g4s" id="optionePsGIjmFYEDK_g4s">Borrar historial de reportes de pagos generados : Use Case</option>
+<option value="shape|741.0|101.0|116.0|40.0|UseCase_H5aGIjmFYEDK_g5T.html|UseCase_H5aGIjmFYEDK_g5T.html|H5aGIjmFYEDK_g5S" id="optionH5aGIjmFYEDK_g5S">Registrar nuevo pago : Use Case</option>
+<option value="shape|736.0|156.0|127.0|40.0|UseCase_IrmGIjmFYEDK_g5l.html|UseCase_IrmGIjmFYEDK_g5l.html|IrmGIjmFYEDK_g5k" id="optionIrmGIjmFYEDK_g5k">Consultar historial de transacciones : Use Case</option>
+<option value="shape|752.0|211.0|100.0|40.0|UseCase_ZqRGIjmFYEDK_g53.html|UseCase_ZqRGIjmFYEDK_g53.html|ZqRGIjmFYEDK_g52" id="optionZqRGIjmFYEDK_g52">Editar registro de pago : Use Case</option>
+<option value="shape|753.0|266.0|92.0|40.0|UseCase_vmdGIjmFYEDK_g6J.html|UseCase_vmdGIjmFYEDK_g6J.html|vmdGIjmFYEDK_g6I" id="optionvmdGIjmFYEDK_g6I">Anular registro de pago : Use Case</option>
+<option value="shape|482.0|42.0|86.0|40.0|UseCase_GPrGIjmFYEDK_g6b.html|UseCase_GPrGIjmFYEDK_g6b.html|GPrGIjmFYEDK_g6a" id="optionGPrGIjmFYEDK_g6a">Inicio de sesión : Use Case</option>
+<option value="shape|549.0|366.0|125.0|40.0|UseCase_PZPGIjmFYEDK_g61.html|UseCase_PZPGIjmFYEDK_g61.html|PZPGIjmFYEDK_g60" id="optionPZPGIjmFYEDK_g60">Registrar calificación de servicio : Use Case</option>
+<option value="shape|359.0|387.0|143.0|40.0|UseCase_otgmIjmFYEDK_g7H.html|UseCase_otgmIjmFYEDK_g7H.html|otgmIjmFYEDK_g7G" id="optionotgmIjmFYEDK_g7G">Visualizar promedio de calificaciones : Use Case</option>
+<option value="shape|568.0|111.0|80.0|40.0|UseCase_5uQ1tjmFYEDK5xqh.html|UseCase_5uQ1tjmFYEDK5xqh.html|5uQ1tjmFYEDK5xqg" id="option5uQ1tjmFYEDK5xqg">Validar datos : Use Case</option>
+<option value="shape|177.0|151.0|80.0|40.0|UseCase_3Bi9tjmFYEDK5y36.html|UseCase_3Bi9tjmFYEDK5y36.html|3Bi9tjmFYEDK5y35" id="option3Bi9tjmFYEDK5y35">Calendario profesional : Use Case</option>
+<option value="shape|384.0|486.0|92.0|40.0|UseCase_05n9tjmFYEDK5y71.html|UseCase_05n9tjmFYEDK5y71.html|05n9tjmFYEDK5y70" id="option05n9tjmFYEDK5y70">Asignar servicios : Use Case</option>
+<option value="shape|283.0|486.0|80.0|40.0|UseCase_LT4DtjmFYEDK5y8a.html|UseCase_LT4DtjmFYEDK5y8a.html|LT4DtjmFYEDK5y8Z" id="optionLT4DtjmFYEDK5y8Z">Crear orden : Use Case</option>
+<option value="shape|281.0|332.0|86.0|40.0|UseCase_s5TDtjmFYEDK5y98.html|UseCase_s5TDtjmFYEDK5y98.html|s5TDtjmFYEDK5y97" id="options5TDtjmFYEDK5y97">Modificar orden : Use Case</option>
+</select>				</td>
+			</tr>
+		</table>
+		<table border="0" cellpadding="0" width="100%" cellspacing="0" style="position: relative; top: 24;">
+			<tr>
+				<td>
+					<img id="diagram" src="../images/Use_Case_Diagram1.png" usemap="#diagram_map" class="Image" width="1197" height="1215"/>
+					<map name="diagram_map">
+<area imageId="diagram" coords="265.0, 578.0, 265.0, 592.0, 329.0, 592.0, 329.0, 578.0" coords2="265.0, 578.0, 265.0, 592.0, 329.0, 592.0, 329.0, 578.0" shape="poly" alt=":Include" id="areadiagram_map_RdJ.IjmFYEDK_hIL_default" href="Include_GdJ_IjmFYEDK_hIK.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1070.0, 120.0, 1070.0, 1135.0, 426.0, 1135.0, 426.0, 1149.0, 1070.0, 1149.0, 1070.0, 1152.0, 1084.0, 1152.0, 1084.0, 1149.0, 1087.0, 1149.0, 1087.0, 1135.0, 1084.0, 1135.0, 1084.0, 120.0" coords2="1070.0, 120.0, 1070.0, 1135.0, 426.0, 1135.0, 426.0, 1149.0, 1070.0, 1149.0, 1070.0, 1152.0, 1084.0, 1152.0, 1084.0, 1149.0, 1087.0, 1149.0, 1087.0, 1135.0, 1084.0, 1135.0, 1084.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_e_9.IjmFYEDK_hI1_default" href="Association_S_9_IjmFYEDK_hIw.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="518.0, 995.0, 518.0, 998.0, 410.0, 998.0, 410.0, 1012.0, 518.0, 1012.0, 518.0, 1055.0, 515.0, 1055.0, 515.0, 1069.0, 518.0, 1069.0, 518.0, 1072.0, 532.0, 1072.0, 532.0, 1069.0, 1151.0, 1069.0, 1151.0, 1055.0, 532.0, 1055.0, 532.0, 1012.0, 535.0, 1012.0, 535.0, 998.0, 532.0, 998.0, 532.0, 995.0" coords2="518.0, 995.0, 518.0, 998.0, 410.0, 998.0, 410.0, 1012.0, 518.0, 1012.0, 518.0, 1055.0, 515.0, 1055.0, 515.0, 1069.0, 518.0, 1069.0, 518.0, 1072.0, 532.0, 1072.0, 532.0, 1069.0, 1151.0, 1069.0, 1151.0, 1055.0, 532.0, 1055.0, 532.0, 1012.0, 535.0, 1012.0, 535.0, 998.0, 532.0, 998.0, 532.0, 995.0" shape="poly" alt=":Association" id="areadiagram_map_3C7.IjmFYEDK_hJJ_default" href="Association_jC7_IjmFYEDK_hJE.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1070.0, 120.0, 1070.0, 991.0, 410.0, 991.0, 410.0, 1005.0, 1070.0, 1005.0, 1070.0, 1008.0, 1084.0, 1008.0, 1084.0, 1005.0, 1087.0, 1005.0, 1087.0, 991.0, 1084.0, 991.0, 1084.0, 120.0" coords2="1070.0, 120.0, 1070.0, 991.0, 410.0, 991.0, 410.0, 1005.0, 1070.0, 1005.0, 1070.0, 1008.0, 1084.0, 1008.0, 1084.0, 1005.0, 1087.0, 1005.0, 1087.0, 991.0, 1084.0, 991.0, 1084.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_NIn.IjmFYEDK_hJR_default" href="Association_hIn_IjmFYEDK_hJM.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="36.0, 402.0, 36.0, 984.9887, 36.0, 984.9887, 33.0, 985.0, 33.0, 999.0, 36.0, 998.9887, 36.0, 998.9887, 36.0, 1002.0, 50.0, 1002.0, 50.0, 998.93585, 50.0, 998.93585, 286.0, 998.0453, 286.0, 998.0453, 286.0, 984.0453, 286.0, 984.0453, 50.0, 984.93585, 50.0, 984.93585, 50.0, 402.0" coords2="36.0, 402.0, 36.0, 984.9887, 36.0, 984.9887, 33.0, 985.0, 33.0, 999.0, 36.0, 998.9887, 36.0, 998.9887, 36.0, 1002.0, 50.0, 1002.0, 50.0, 998.93585, 50.0, 998.93585, 286.0, 998.0453, 286.0, 998.0453, 286.0, 984.0453, 286.0, 984.0453, 50.0, 984.93585, 50.0, 984.93585, 50.0, 402.0" shape="poly" alt=":Association" id="areadiagram_map_rZX.IjmFYEDK_hJZ_default" href="Association_lZX_IjmFYEDK_hJU.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1070.0, 121.0, 1070.0, 1079.0, 407.0, 1079.0, 407.0, 1093.0, 1070.0, 1093.0, 1070.0, 1096.0, 1084.0, 1096.0, 1084.0, 1093.0, 1087.0, 1093.0, 1087.0, 1079.0, 1084.0, 1079.0, 1084.0, 121.0" coords2="1070.0, 121.0, 1070.0, 1079.0, 407.0, 1079.0, 407.0, 1093.0, 1070.0, 1093.0, 1070.0, 1096.0, 1084.0, 1096.0, 1084.0, 1093.0, 1087.0, 1093.0, 1087.0, 1079.0, 1084.0, 1079.0, 1084.0, 121.0" shape="poly" alt=":Association" id="areadiagram_map_lRZBIjmFYEDK_hKt_default" href="Association_hRZBIjmFYEDK_hKo.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="518.0, 755.0, 518.0, 758.0, 418.0, 758.0, 418.0, 772.0, 518.0, 772.0, 518.0, 1055.0, 515.0, 1055.0, 515.0, 1069.0, 518.0, 1069.0, 518.0, 1072.0, 532.0, 1072.0, 532.0, 1069.0, 1151.0, 1069.0, 1151.0, 1055.0, 532.0, 1055.0, 532.0, 772.0, 535.0, 772.0, 535.0, 758.0, 532.0, 758.0, 532.0, 755.0" coords2="518.0, 755.0, 518.0, 758.0, 418.0, 758.0, 418.0, 772.0, 518.0, 772.0, 518.0, 1055.0, 515.0, 1055.0, 515.0, 1069.0, 518.0, 1069.0, 518.0, 1072.0, 532.0, 1072.0, 532.0, 1069.0, 1151.0, 1069.0, 1151.0, 1055.0, 532.0, 1055.0, 532.0, 772.0, 535.0, 772.0, 535.0, 758.0, 532.0, 758.0, 532.0, 755.0" shape="poly" alt=":Association" id="areadiagram_map_13dBIjmFYEDK_hLN_default" href="Association_kVdBIjmFYEDK_hLI.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1070.0, 120.0, 1070.0, 604.9644, 1070.0, 604.9644, 626.0, 604.0356, 626.0, 604.0356, 626.0, 601.0, 612.0, 601.0, 612.0, 604.0063, 612.0, 604.0063, 609.0, 604.0, 609.0, 618.0, 612.0, 618.0063, 612.0, 618.0063, 612.0, 755.0, 418.0, 755.0, 418.0, 769.0, 612.0, 769.0, 612.0, 772.0, 626.0, 772.0, 626.0, 769.0, 629.0, 769.0, 629.0, 755.0, 626.0, 755.0, 626.0, 618.0356, 626.0, 618.0356, 1070.0, 618.9644, 1070.0, 618.9644, 1070.0, 622.0, 1084.0, 622.0, 1084.0, 618.9937, 1084.0, 618.9937, 1087.0, 619.0, 1087.0, 605.0, 1084.0, 604.9937, 1084.0, 604.9937, 1084.0, 120.0" coords2="1070.0, 120.0, 1070.0, 604.9644, 1070.0, 604.9644, 626.0, 604.0356, 626.0, 604.0356, 626.0, 601.0, 612.0, 601.0, 612.0, 604.0063, 612.0, 604.0063, 609.0, 604.0, 609.0, 618.0, 612.0, 618.0063, 612.0, 618.0063, 612.0, 755.0, 418.0, 755.0, 418.0, 769.0, 612.0, 769.0, 612.0, 772.0, 626.0, 772.0, 626.0, 769.0, 629.0, 769.0, 629.0, 755.0, 626.0, 755.0, 626.0, 618.0356, 626.0, 618.0356, 1070.0, 618.9644, 1070.0, 618.9644, 1070.0, 622.0, 1084.0, 622.0, 1084.0, 618.9937, 1084.0, 618.9937, 1087.0, 619.0, 1087.0, 605.0, 1084.0, 604.9937, 1084.0, 604.9937, 1084.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_OsvBIjmFYEDK_hLx_default" href="Association_D0vBIjmFYEDK_hLs.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="519.0, 640.0, 519.0, 643.0, 406.0, 643.0, 406.0, 657.0, 519.0, 657.0, 519.0, 1054.0, 516.0, 1054.0, 516.0, 1068.0, 519.0, 1068.0, 519.0, 1071.0, 533.0, 1071.0, 533.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 533.0, 1054.0, 533.0, 657.0, 536.0, 657.0, 536.0, 643.0, 533.0, 643.0, 533.0, 640.0" coords2="519.0, 640.0, 519.0, 643.0, 406.0, 643.0, 406.0, 657.0, 519.0, 657.0, 519.0, 1054.0, 516.0, 1054.0, 516.0, 1068.0, 519.0, 1068.0, 519.0, 1071.0, 533.0, 1071.0, 533.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 533.0, 1054.0, 533.0, 657.0, 536.0, 657.0, 536.0, 643.0, 533.0, 643.0, 533.0, 640.0" shape="poly" alt=":Association" id="areadiagram_map_x.khIjmFYEDK_hMZ_default" href="Association_m_khIjmFYEDK_hMU.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="36.0, 404.0, 36.0, 645.0, 33.0, 645.0, 33.0, 659.0, 36.0, 659.0, 36.0, 662.0, 50.0, 662.0, 50.0, 659.0, 264.0, 659.0, 264.0, 645.0, 50.0, 645.0, 50.0, 404.0" coords2="36.0, 404.0, 36.0, 645.0, 33.0, 645.0, 33.0, 659.0, 36.0, 659.0, 36.0, 662.0, 50.0, 662.0, 50.0, 659.0, 264.0, 659.0, 264.0, 645.0, 50.0, 645.0, 50.0, 404.0" shape="poly" alt=":Association" id="areadiagram_map_ClshIjmFYEDK_hMl_default" href="Association_ElshIjmFYEDK_hMg.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 121.0, 1069.0, 605.0, 626.0, 605.0, 626.0, 602.0, 612.0, 602.0, 612.0, 605.0, 609.0, 605.0, 609.0, 619.0, 612.0, 619.0, 612.0, 634.0, 406.0, 634.0, 406.0, 648.0, 612.0, 648.0, 612.0, 651.0, 626.0, 651.0, 626.0, 648.0, 629.0, 648.0, 629.0, 634.0, 626.0, 634.0, 626.0, 619.0, 1069.0, 619.0, 1069.0, 622.0, 1083.0, 622.0, 1083.0, 619.0, 1086.0, 619.0, 1086.0, 605.0, 1083.0, 605.0, 1083.0, 121.0" coords2="1069.0, 121.0, 1069.0, 605.0, 626.0, 605.0, 626.0, 602.0, 612.0, 602.0, 612.0, 605.0, 609.0, 605.0, 609.0, 619.0, 612.0, 619.0, 612.0, 634.0, 406.0, 634.0, 406.0, 648.0, 612.0, 648.0, 612.0, 651.0, 626.0, 651.0, 626.0, 648.0, 629.0, 648.0, 629.0, 634.0, 626.0, 634.0, 626.0, 619.0, 1069.0, 619.0, 1069.0, 622.0, 1083.0, 622.0, 1083.0, 619.0, 1086.0, 619.0, 1086.0, 605.0, 1083.0, 605.0, 1083.0, 121.0" shape="poly" alt=":Association" id="areadiagram_map_h6yhIjmFYEDK_hMz_default" href="Association_G6yhIjmFYEDK_hMu.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="519.0, 585.0, 519.0, 588.0, 499.0, 588.0, 499.0, 602.0, 519.0, 602.0, 519.0, 1054.0, 516.0, 1054.0, 516.0, 1068.0, 519.0, 1068.0, 519.0, 1071.0, 533.0, 1071.0, 533.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 533.0, 1054.0, 533.0, 602.0, 536.0, 602.0, 536.0, 588.0, 533.0, 588.0, 533.0, 585.0" coords2="519.0, 585.0, 519.0, 588.0, 499.0, 588.0, 499.0, 602.0, 519.0, 602.0, 519.0, 1054.0, 516.0, 1054.0, 516.0, 1068.0, 519.0, 1068.0, 519.0, 1071.0, 533.0, 1071.0, 533.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 533.0, 1054.0, 533.0, 602.0, 536.0, 602.0, 536.0, 588.0, 533.0, 588.0, 533.0, 585.0" shape="poly" alt=":Association" id="areadiagram_map_5TOhIjmFYEDK_hNL_default" href="Association__TOhIjmFYEDK_hNG.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 120.0, 1069.0, 604.97156, 1069.0, 604.97156, 499.0, 604.0184, 499.0, 604.0184, 499.0, 618.0184, 499.0, 618.0184, 1069.0, 618.97156, 1069.0, 618.97156, 1069.0, 622.0, 1083.0, 622.0, 1083.0, 618.995, 1083.0, 618.995, 1086.0, 619.0, 1086.0, 605.0, 1083.0, 604.995, 1083.0, 604.995, 1083.0, 120.0" coords2="1069.0, 120.0, 1069.0, 604.97156, 1069.0, 604.97156, 499.0, 604.0184, 499.0, 604.0184, 499.0, 618.0184, 499.0, 618.0184, 1069.0, 618.97156, 1069.0, 618.97156, 1069.0, 622.0, 1083.0, 622.0, 1083.0, 618.995, 1083.0, 618.995, 1086.0, 619.0, 1086.0, 605.0, 1083.0, 604.995, 1083.0, 604.995, 1083.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_uv.hIjmFYEDK_hNX_default" href="Association__P_hIjmFYEDK_hNS.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 120.0, 1069.0, 825.0, 817.0, 825.0, 817.0, 822.0, 803.0, 822.0, 803.0, 825.0, 800.0, 825.0, 800.0, 839.0, 803.0, 839.0, 803.0, 1020.0, 708.0, 1020.0, 708.0, 1034.0, 803.0, 1034.0, 803.0, 1037.0, 817.0, 1037.0, 817.0, 1034.0, 820.0, 1034.0, 820.0, 1020.0, 817.0, 1020.0, 817.0, 839.0, 1069.0, 839.0, 1069.0, 842.0, 1083.0, 842.0, 1083.0, 839.0, 1086.0, 839.0, 1086.0, 825.0, 1083.0, 825.0, 1083.0, 120.0" coords2="1069.0, 120.0, 1069.0, 825.0, 817.0, 825.0, 817.0, 822.0, 803.0, 822.0, 803.0, 825.0, 800.0, 825.0, 800.0, 839.0, 803.0, 839.0, 803.0, 1020.0, 708.0, 1020.0, 708.0, 1034.0, 803.0, 1034.0, 803.0, 1037.0, 817.0, 1037.0, 817.0, 1034.0, 820.0, 1034.0, 820.0, 1020.0, 817.0, 1020.0, 817.0, 839.0, 1069.0, 839.0, 1069.0, 842.0, 1083.0, 842.0, 1083.0, 839.0, 1086.0, 839.0, 1086.0, 825.0, 1083.0, 825.0, 1083.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_RrZhIjmFYEDK_hNo_default" href="Association_GrZhIjmFYEDK_hNj.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 120.0, 1069.0, 825.0, 817.0, 825.0, 817.0, 822.0, 803.0, 822.0, 803.0, 825.0, 800.0, 825.0, 800.0, 839.0, 803.0, 839.0, 803.0, 943.0, 708.0, 943.0, 708.0, 957.0, 803.0, 957.0, 803.0, 960.0, 817.0, 960.0, 817.0, 957.0, 820.0, 957.0, 820.0, 943.0, 817.0, 943.0, 817.0, 839.0, 1069.0, 839.0, 1069.0, 842.0, 1083.0, 842.0, 1083.0, 839.0, 1086.0, 839.0, 1086.0, 825.0, 1083.0, 825.0, 1083.0, 120.0" coords2="1069.0, 120.0, 1069.0, 825.0, 817.0, 825.0, 817.0, 822.0, 803.0, 822.0, 803.0, 825.0, 800.0, 825.0, 800.0, 839.0, 803.0, 839.0, 803.0, 943.0, 708.0, 943.0, 708.0, 957.0, 803.0, 957.0, 803.0, 960.0, 817.0, 960.0, 817.0, 957.0, 820.0, 957.0, 820.0, 943.0, 817.0, 943.0, 817.0, 839.0, 1069.0, 839.0, 1069.0, 842.0, 1083.0, 842.0, 1083.0, 839.0, 1086.0, 839.0, 1086.0, 825.0, 1083.0, 825.0, 1083.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_TMFhIjmFYEDK_hNw_default" href="Association_5MFhIjmFYEDK_hNr.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 120.0, 1069.0, 825.0, 817.0, 825.0, 817.0, 822.0, 803.0, 822.0, 803.0, 825.0, 800.0, 825.0, 800.0, 839.0, 803.0, 839.0, 803.0, 885.0, 698.0, 885.0, 698.0, 899.0, 803.0, 899.0, 803.0, 902.0, 817.0, 902.0, 817.0, 899.0, 820.0, 899.0, 820.0, 885.0, 817.0, 885.0, 817.0, 839.0, 1069.0, 839.0, 1069.0, 842.0, 1083.0, 842.0, 1083.0, 839.0, 1086.0, 839.0, 1086.0, 825.0, 1083.0, 825.0, 1083.0, 120.0" coords2="1069.0, 120.0, 1069.0, 825.0, 817.0, 825.0, 817.0, 822.0, 803.0, 822.0, 803.0, 825.0, 800.0, 825.0, 800.0, 839.0, 803.0, 839.0, 803.0, 885.0, 698.0, 885.0, 698.0, 899.0, 803.0, 899.0, 803.0, 902.0, 817.0, 902.0, 817.0, 899.0, 820.0, 899.0, 820.0, 885.0, 817.0, 885.0, 817.0, 839.0, 1069.0, 839.0, 1069.0, 842.0, 1083.0, 842.0, 1083.0, 839.0, 1086.0, 839.0, 1086.0, 825.0, 1083.0, 825.0, 1083.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_h9lhIjmFYEDK_hN4_default" href="Association_G9lhIjmFYEDK_hNz.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="864.0, 891.0, 864.0, 894.0, 698.0, 894.0, 698.0, 908.0, 864.0, 908.0, 864.0, 1054.0, 861.0, 1054.0, 861.0, 1068.0, 864.0, 1068.0, 864.0, 1071.0, 878.0, 1071.0, 878.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 878.0, 1054.0, 878.0, 908.0, 881.0, 908.0, 881.0, 894.0, 878.0, 894.0, 878.0, 891.0" coords2="864.0, 891.0, 864.0, 894.0, 698.0, 894.0, 698.0, 908.0, 864.0, 908.0, 864.0, 1054.0, 861.0, 1054.0, 861.0, 1068.0, 864.0, 1068.0, 864.0, 1071.0, 878.0, 1071.0, 878.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 878.0, 1054.0, 878.0, 908.0, 881.0, 908.0, 881.0, 894.0, 878.0, 894.0, 878.0, 891.0" shape="poly" alt=":Association" id="areadiagram_map_0TThIjmFYEDK_hOE_default" href="Association_9jThIjmFYEDK_hN_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 120.0, 1069.0, 825.0, 706.0, 825.0, 706.0, 839.0, 1069.0, 839.0, 1069.0, 842.0, 1083.0, 842.0, 1083.0, 839.0, 1086.0, 839.0, 1086.0, 825.0, 1083.0, 825.0, 1083.0, 120.0" coords2="1069.0, 120.0, 1069.0, 825.0, 706.0, 825.0, 706.0, 839.0, 1069.0, 839.0, 1069.0, 842.0, 1083.0, 842.0, 1083.0, 839.0, 1086.0, 839.0, 1086.0, 825.0, 1083.0, 825.0, 1083.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_n9XhIjmFYEDK_hOj_default" href="Association_99XhIjmFYEDK_hOe.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="519.0, 695.0, 519.0, 698.0, 397.0, 698.0, 397.0, 712.0, 519.0, 712.0, 519.0, 1055.0, 516.0, 1055.0, 516.0, 1069.0, 519.0, 1069.0, 519.0, 1072.0, 533.0, 1072.0, 533.0, 1069.0, 1151.0, 1069.0, 1151.0, 1055.0, 533.0, 1055.0, 533.0, 712.0, 536.0, 712.0, 536.0, 698.0, 533.0, 698.0, 533.0, 695.0" coords2="519.0, 695.0, 519.0, 698.0, 397.0, 698.0, 397.0, 712.0, 519.0, 712.0, 519.0, 1055.0, 516.0, 1055.0, 516.0, 1069.0, 519.0, 1069.0, 519.0, 1072.0, 533.0, 1072.0, 533.0, 1069.0, 1151.0, 1069.0, 1151.0, 1055.0, 533.0, 1055.0, 533.0, 712.0, 536.0, 712.0, 536.0, 698.0, 533.0, 698.0, 533.0, 695.0" shape="poly" alt=":Association" id="areadiagram_map_TNgRIjmFYEDK_hO0_default" href="Association__NgRIjmFYEDK_hOv.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1070.0, 120.0, 1070.0, 604.96454, 1070.0, 604.96454, 625.0, 604.03546, 625.0, 604.03546, 625.0, 601.0, 611.0, 601.0, 611.0, 604.0063, 611.0, 604.0063, 608.0, 604.0, 608.0, 618.0, 611.0, 618.0063, 611.0, 618.0063, 611.0, 690.0, 397.0, 690.0, 397.0, 704.0, 611.0, 704.0, 611.0, 707.0, 625.0, 707.0, 625.0, 704.0, 628.0, 704.0, 628.0, 690.0, 625.0, 690.0, 625.0, 618.03546, 625.0, 618.03546, 1070.0, 618.96454, 1070.0, 618.96454, 1070.0, 622.0, 1084.0, 622.0, 1084.0, 618.9937, 1084.0, 618.9937, 1087.0, 619.0, 1087.0, 605.0, 1084.0, 604.9937, 1084.0, 604.9937, 1084.0, 120.0" coords2="1070.0, 120.0, 1070.0, 604.96454, 1070.0, 604.96454, 625.0, 604.03546, 625.0, 604.03546, 625.0, 601.0, 611.0, 601.0, 611.0, 604.0063, 611.0, 604.0063, 608.0, 604.0, 608.0, 618.0, 611.0, 618.0063, 611.0, 618.0063, 611.0, 690.0, 397.0, 690.0, 397.0, 704.0, 611.0, 704.0, 611.0, 707.0, 625.0, 707.0, 625.0, 704.0, 628.0, 704.0, 628.0, 690.0, 625.0, 690.0, 625.0, 618.03546, 625.0, 618.03546, 1070.0, 618.96454, 1070.0, 618.96454, 1070.0, 622.0, 1084.0, 622.0, 1084.0, 618.9937, 1084.0, 618.9937, 1087.0, 619.0, 1087.0, 605.0, 1084.0, 604.9937, 1084.0, 604.9937, 1084.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_X.YRIjmFYEDK_hPA_default" href="Association_9_YRIjmFYEDK_hO7.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1070.0, 121.0, 1070.0, 706.0, 861.0, 706.0, 861.0, 720.0, 1070.0, 720.0, 1070.0, 723.0, 1084.0, 723.0, 1084.0, 720.0, 1087.0, 720.0, 1087.0, 706.0, 1084.0, 706.0, 1084.0, 121.0" coords2="1070.0, 121.0, 1070.0, 706.0, 861.0, 706.0, 861.0, 720.0, 1070.0, 720.0, 1070.0, 723.0, 1084.0, 723.0, 1084.0, 720.0, 1087.0, 720.0, 1087.0, 706.0, 1084.0, 706.0, 1084.0, 121.0" shape="poly" alt=":Association" id="areadiagram_map_tgr_EjmFYEDKxgmy_default" href="Association_Rgr_EjmFYEDKxgmm.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 119.0, 1069.0, 644.0, 890.0, 644.0, 890.0, 658.0, 1069.0, 658.0, 1069.0, 661.0, 1083.0, 661.0, 1083.0, 658.0, 1086.0, 658.0, 1086.0, 644.0, 1083.0, 644.0, 1083.0, 119.0" coords2="1069.0, 119.0, 1069.0, 644.0, 890.0, 644.0, 890.0, 658.0, 1069.0, 658.0, 1069.0, 661.0, 1083.0, 661.0, 1083.0, 658.0, 1086.0, 658.0, 1086.0, 644.0, 1083.0, 644.0, 1083.0, 119.0" shape="poly" alt=":Association" id="areadiagram_map_9Q3_EjmFYEDKxgqf_default" href="Association_pQ3_EjmFYEDKxgqa.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 119.0, 1069.0, 564.0, 862.0, 564.0, 862.0, 578.0, 1069.0, 578.0, 1069.0, 581.0, 1083.0, 581.0, 1083.0, 578.0, 1086.0, 578.0, 1086.0, 564.0, 1083.0, 564.0, 1083.0, 119.0" coords2="1069.0, 119.0, 1069.0, 564.0, 862.0, 564.0, 862.0, 578.0, 1069.0, 578.0, 1069.0, 581.0, 1083.0, 581.0, 1083.0, 578.0, 1086.0, 578.0, 1086.0, 564.0, 1083.0, 564.0, 1083.0, 119.0" shape="poly" alt=":Association" id="areadiagram_map_Ep__EjmFYEDKxgqt_default" href="Association_PJ__EjmFYEDKxgqo.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 119.0, 1069.0, 509.0, 862.0, 509.0, 862.0, 523.0, 1069.0, 523.0, 1069.0, 526.0, 1083.0, 526.0, 1083.0, 523.0, 1086.0, 523.0, 1086.0, 509.0, 1083.0, 509.0, 1083.0, 119.0" coords2="1069.0, 119.0, 1069.0, 509.0, 862.0, 509.0, 862.0, 523.0, 1069.0, 523.0, 1069.0, 526.0, 1083.0, 526.0, 1083.0, 523.0, 1086.0, 523.0, 1086.0, 509.0, 1083.0, 509.0, 1083.0, 119.0" shape="poly" alt=":Association" id="areadiagram_map_cU0AkjmFYEDKxgq7_default" href="Association_IU0AkjmFYEDKxgq2.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="898.0, 108.0, 898.0, 111.0, 895.0, 111.0, 895.0, 125.0, 898.0, 125.0, 898.0, 217.0, 852.0, 217.0, 852.0, 231.0, 898.0, 231.0, 898.0, 234.0, 912.0, 234.0, 912.0, 231.0, 915.0, 231.0, 915.0, 217.0, 912.0, 217.0, 912.0, 125.0, 1040.0, 125.0, 1040.0, 111.0, 912.0, 111.0, 912.0, 108.0" coords2="898.0, 108.0, 898.0, 111.0, 895.0, 111.0, 895.0, 125.0, 898.0, 125.0, 898.0, 217.0, 852.0, 217.0, 852.0, 231.0, 898.0, 231.0, 898.0, 234.0, 912.0, 234.0, 912.0, 231.0, 915.0, 231.0, 915.0, 217.0, 912.0, 217.0, 912.0, 125.0, 1040.0, 125.0, 1040.0, 111.0, 912.0, 111.0, 912.0, 108.0" shape="poly" alt=":Association" id="areadiagram_map_Z16AkjmFYEDKxgrX_default" href="Association_O16AkjmFYEDKxgrS.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="899.0, 109.0, 899.0, 112.0, 896.0, 112.0, 896.0, 126.0, 899.0, 126.0, 899.0, 169.0, 863.0, 169.0, 863.0, 183.0, 899.0, 183.0, 899.0, 186.0, 913.0, 186.0, 913.0, 183.0, 916.0, 183.0, 916.0, 169.0, 913.0, 169.0, 913.0, 126.0, 1041.0, 126.0, 1041.0, 112.0, 913.0, 112.0, 913.0, 109.0" coords2="899.0, 109.0, 899.0, 112.0, 896.0, 112.0, 896.0, 126.0, 899.0, 126.0, 899.0, 169.0, 863.0, 169.0, 863.0, 183.0, 899.0, 183.0, 899.0, 186.0, 913.0, 186.0, 913.0, 183.0, 916.0, 183.0, 916.0, 169.0, 913.0, 169.0, 913.0, 126.0, 1041.0, 126.0, 1041.0, 112.0, 913.0, 112.0, 913.0, 109.0" shape="poly" alt=":Association" id="areadiagram_map_Y_GAkjmFYEDKxgrf_default" href="Association_PfGAkjmFYEDKxgra.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="857.0, 112.0, 857.0, 126.0, 1041.0, 126.0, 1041.0, 112.0" coords2="857.0, 112.0, 857.0, 126.0, 1041.0, 126.0, 1041.0, 112.0" shape="poly" alt=":Association" id="areadiagram_map_eYuAkjmFYEDKxgrv_default" href="Association_KYuAkjmFYEDKxgrq.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="359.0, 400.06668, 69.0, 402.0, 69.0, 416.0, 359.0, 414.06668, 359.0, 414.06668, 359.0, 400.06668" coords2="359.0, 400.06668, 69.0, 402.0, 69.0, 416.0, 359.0, 414.06668, 359.0, 414.06668, 359.0, 400.06668" shape="poly" alt=":Association" id="areadiagram_map_dLFAkjmFYEDKxgsN_default" href="Association_JLFAkjmFYEDKxgsI.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="518.0, 374.0, 518.0, 377.0, 515.0, 377.0, 515.0, 391.0, 518.0, 391.0, 518.0, 1054.0, 515.0, 1054.0, 515.0, 1068.0, 518.0, 1068.0, 518.0, 1071.0, 532.0, 1071.0, 532.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 532.0, 1054.0, 532.0, 391.0, 549.0, 391.0, 549.0, 377.0, 532.0, 377.0, 532.0, 374.0" coords2="518.0, 374.0, 518.0, 377.0, 515.0, 377.0, 515.0, 391.0, 518.0, 391.0, 518.0, 1054.0, 515.0, 1054.0, 515.0, 1068.0, 518.0, 1068.0, 518.0, 1071.0, 532.0, 1071.0, 532.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 532.0, 1054.0, 532.0, 391.0, 549.0, 391.0, 549.0, 377.0, 532.0, 377.0, 532.0, 374.0" shape="poly" alt=":Association" id="areadiagram_map_SwDAkjmFYEDKxgsb_default" href="Association_owDAkjmFYEDKxgsW.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1070.0, 121.0, 1069.055, 413.0, 502.0, 413.0, 502.0, 427.0, 1069.0098, 427.0, 1069.0, 430.0, 1083.0, 430.0, 1083.0098, 427.0, 1086.0, 427.0, 1086.0, 413.0, 1083.055, 413.0, 1084.0, 121.0" coords2="1070.0, 121.0, 1069.055, 413.0, 502.0, 413.0, 502.0, 427.0, 1069.0098, 427.0, 1069.0, 430.0, 1083.0, 430.0, 1083.0098, 427.0, 1086.0, 427.0, 1086.0, 413.0, 1083.055, 413.0, 1084.0, 121.0" shape="poly" alt=":Association" id="areadiagram_map_GAYgkjmFYEDKxgtb_default" href="Association_MAYgkjmFYEDKxgtW.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="568.0, 58.019493, 568.0, 72.01949, 568.0, 72.01949, 1062.0, 72.98245, 1062.0, 72.98245, 1062.0, 58.982456, 1062.0, 58.982456, 568.0, 58.019493" coords2="568.0, 58.019493, 568.0, 72.01949, 568.0, 72.01949, 1062.0, 72.98245, 1062.0, 72.98245, 1062.0, 58.982456, 1062.0, 58.982456, 568.0, 58.019493" shape="poly" alt=":Association" id="areadiagram_map_qitQkjmFYEDKxgzj_default" href="Association_sitQkjmFYEDKxgze.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="36.0, 61.0, 36.0, 63.993507, 36.0, 63.993507, 33.0, 64.0, 33.0, 78.0, 36.0, 77.99351, 36.0, 77.99351, 36.0, 334.0, 50.0, 334.0, 50.0, 77.9632, 50.0, 77.9632, 482.0, 77.02814, 482.0, 77.02814, 482.0, 63.028137, 482.0, 63.028137, 50.0, 63.963203, 50.0, 61.0" coords2="36.0, 61.0, 36.0, 63.993507, 36.0, 63.993507, 33.0, 64.0, 33.0, 78.0, 36.0, 77.99351, 36.0, 77.99351, 36.0, 334.0, 50.0, 334.0, 50.0, 77.9632, 50.0, 77.9632, 482.0, 77.02814, 482.0, 77.02814, 482.0, 63.028137, 482.0, 63.028137, 50.0, 63.963203, 50.0, 61.0" shape="poly" alt=":Association" id="areadiagram_map_gbDQkjmFYEDKxgzx_default" href="Association_XrDQkjmFYEDKxgzs.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="518.0, 82.0, 518.0, 1054.0, 515.0, 1054.0, 515.0, 1068.0, 518.0, 1068.0, 518.0, 1071.0, 532.0, 1071.0, 532.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 532.0, 1054.0, 532.0, 82.0" coords2="518.0, 82.0, 518.0, 1054.0, 515.0, 1054.0, 515.0, 1068.0, 518.0, 1068.0, 518.0, 1071.0, 532.0, 1071.0, 532.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 532.0, 1054.0, 532.0, 82.0" shape="poly" alt=":Association" id="areadiagram_map_gqrQkjmFYEDKxgz__default" href="Association_7KrQkjmFYEDKxgz6.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="899.0, 108.0, 899.0, 111.0, 896.0, 111.0, 896.0, 125.0, 899.0, 125.0, 899.0, 277.0, 845.0, 277.0, 845.0, 291.0, 899.0, 291.0, 899.0, 294.0, 913.0, 294.0, 913.0, 291.0, 916.0, 291.0, 916.0, 277.0, 913.0, 277.0, 913.0, 125.0, 1041.0, 125.0, 1041.0, 111.0, 913.0, 111.0, 913.0, 108.0" coords2="899.0, 108.0, 899.0, 111.0, 896.0, 111.0, 896.0, 125.0, 899.0, 125.0, 899.0, 277.0, 845.0, 277.0, 845.0, 291.0, 899.0, 291.0, 899.0, 294.0, 913.0, 294.0, 913.0, 291.0, 916.0, 291.0, 916.0, 277.0, 913.0, 277.0, 913.0, 125.0, 1041.0, 125.0, 1041.0, 111.0, 913.0, 111.0, 913.0, 108.0" shape="poly" alt=":Association" id="areadiagram_map_LGDokjmFYEDKxg5W_default" href="Association_1GDokjmFYEDKxg5R.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="695.0, 56.0, 695.0, 59.0, 692.0, 59.0, 692.0, 73.0, 695.0, 73.0, 695.0, 160.0, 519.0, 160.0, 519.0, 174.0, 695.0, 174.0, 695.0, 177.0, 709.0, 177.0, 709.0, 174.0, 712.0, 174.0, 712.0, 160.0, 709.0, 160.0, 709.0, 73.0, 1062.0, 73.0, 1062.0, 59.0, 709.0, 59.0, 709.0, 56.0" coords2="695.0, 56.0, 695.0, 59.0, 692.0, 59.0, 692.0, 73.0, 695.0, 73.0, 695.0, 160.0, 519.0, 160.0, 519.0, 174.0, 695.0, 174.0, 695.0, 177.0, 709.0, 177.0, 709.0, 174.0, 712.0, 174.0, 712.0, 160.0, 709.0, 160.0, 709.0, 73.0, 1062.0, 73.0, 1062.0, 59.0, 709.0, 59.0, 709.0, 56.0" shape="poly" alt=":Association" id="areadiagram_map_AfCJkjmFYEDKxhrD_default" href="Association_rvCJkjmFYEDKxhq_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="519.0, 161.0, 519.0, 199.0, 519.0, 1054.0, 516.0, 1054.0, 516.0, 1068.0, 519.0, 1068.0, 519.0, 1071.0, 533.0, 1071.0, 533.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 533.0, 1054.0, 533.0, 178.0, 536.0, 178.0, 536.0, 164.0, 533.0, 164.0, 533.0, 161.0" coords2="519.0, 161.0, 519.0, 199.0, 519.0, 1054.0, 516.0, 1054.0, 516.0, 1068.0, 519.0, 1068.0, 519.0, 1071.0, 533.0, 1071.0, 533.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 533.0, 1054.0, 533.0, 178.0, 536.0, 178.0, 536.0, 164.0, 533.0, 164.0, 533.0, 161.0" shape="poly" alt=":Association" id="areadiagram_map_q3aJkjmFYEDKxhrV_default" href="Association_U3aJkjmFYEDKxhrQ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="408.0, 427.0, 408.0, 439.0, 405.0, 439.0, 405.0, 453.0, 408.0, 453.0, 408.0, 456.0, 422.0, 456.0, 422.0, 453.0, 518.0, 453.0, 518.0, 1054.0, 515.0, 1054.0, 515.0, 1068.0, 518.0, 1068.0, 518.0, 1071.0, 532.0, 1071.0, 532.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 532.0, 1054.0, 532.0, 453.0, 535.0, 453.0, 535.0, 439.0, 532.0, 439.0, 532.0, 436.0, 518.0, 436.0, 518.0, 439.0, 422.0, 439.0, 422.0, 427.0" coords2="408.0, 427.0, 408.0, 439.0, 405.0, 439.0, 405.0, 453.0, 408.0, 453.0, 408.0, 456.0, 422.0, 456.0, 422.0, 453.0, 518.0, 453.0, 518.0, 1054.0, 515.0, 1054.0, 515.0, 1068.0, 518.0, 1068.0, 518.0, 1071.0, 532.0, 1071.0, 532.0, 1068.0, 1151.0, 1068.0, 1151.0, 1054.0, 532.0, 1054.0, 532.0, 453.0, 535.0, 453.0, 535.0, 439.0, 532.0, 439.0, 532.0, 436.0, 518.0, 436.0, 518.0, 439.0, 422.0, 439.0, 422.0, 427.0" shape="poly" alt=":Association" id="areadiagram_map_6O4lyjmFYEDK5Bey_default" href="Association_CO4lyjmFYEDK5Bet.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="568.0, 74.190475, 568.0, 82.0, 555.3333, 82.0, 568.0, 120.0, 568.0, 111.0, 580.0781, 111.0, 568.0, 74.190475" coords2="568.0, 74.190475, 568.0, 82.0, 555.3333, 82.0, 568.0, 120.0, 568.0, 111.0, 580.0781, 111.0, 568.0, 74.190475" shape="poly" alt=":Include" id="areadiagram_map_zeQ1tjmFYEDK5xqw_default" href="Include_teQ1tjmFYEDK5xqv.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="257.0, 174.0, 257.0, 188.0, 329.0, 188.0, 329.0, 174.0" coords2="257.0, 174.0, 257.0, 188.0, 329.0, 188.0, 329.0, 174.0" shape="poly" alt=":Extend" id="areadiagram_map_H6O9tjmFYEDK5y5P_default" href="Extend_x6O9tjmFYEDK5y5L.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="409.0, 526.0, 409.0, 572.0, 423.0, 572.0, 423.0, 526.0" coords2="409.0, 526.0, 409.0, 572.0, 423.0, 572.0, 423.0, 526.0" shape="poly" alt=":Extend" id="areadiagram_map_v5n9tjmFYEDK5y8F_default" href="Extend_75n9tjmFYEDK5y8D.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="329.0, 526.0, 329.0, 572.0, 343.0, 572.0, 343.0, 526.0" coords2="329.0, 526.0, 329.0, 572.0, 343.0, 572.0, 343.0, 526.0" shape="poly" alt=":Association" id="areadiagram_map_pz4DtjmFYEDK5y8t_default" href="Association_uz4DtjmFYEDK5y8o.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="363.0, 487.0, 363.0, 501.0, 384.0, 501.0, 384.0, 487.0" coords2="363.0, 487.0, 363.0, 501.0, 384.0, 501.0, 384.0, 487.0" shape="poly" alt=":Association" id="areadiagram_map_gMJDtjmFYEDK5y9Z_default" href="Association_H0JDtjmFYEDK5y9U.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="281.0, 338.04434, 54.0, 338.9597, 54.0, 338.9597, 54.0, 352.9597, 54.0, 352.9597, 281.0, 352.04434, 281.0, 352.04434, 281.0, 338.04434" coords2="281.0, 338.04434, 54.0, 338.9597, 54.0, 338.9597, 54.0, 352.9597, 54.0, 352.9597, 281.0, 352.04434, 281.0, 352.04434, 281.0, 338.04434" shape="poly" alt=":Association" id="areadiagram_map_TirDtjmFYEDK5y.f_default" href="Association_FirDtjmFYEDK5y_a.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1069.0, 120.0, 1069.0, 338.0, 367.0, 338.0, 367.0, 352.0, 1069.0, 352.0, 1069.0, 355.0, 1083.0, 355.0, 1083.0, 352.0, 1086.0, 352.0, 1086.0, 338.0, 1083.0, 338.0, 1083.0, 120.0" coords2="1069.0, 120.0, 1069.0, 338.0, 367.0, 338.0, 367.0, 352.0, 1069.0, 352.0, 1069.0, 355.0, 1083.0, 355.0, 1083.0, 352.0, 1086.0, 352.0, 1086.0, 338.0, 1083.0, 338.0, 1083.0, 120.0" shape="poly" alt=":Association" id="areadiagram_map_9LbDtjmFYEDK5y.y_default" href="Association_5LbDtjmFYEDK5y_t.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; al administrador actualizar informaci&amp;#243;n antes de 
+      cerrar o pagar
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="281, 332, 367, 372" coords2="281, 332, 367, 372" shape="rect" alt="Modificar orden:Use Case" id="areadiagram_map_s5TDtjmFYEDK5y97_default" href="UseCase_s5TDtjmFYEDK5y98.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema genera una orden asociada a una cita agendada
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="283, 486, 363, 526" coords2="283, 486, 363, 526" shape="rect" alt="Crear orden:Use Case" id="areadiagram_map_LT4DtjmFYEDK5y8Z_default" href="UseCase_LT4DtjmFYEDK5y8a.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; seleccionar varios servicios para asociarlos a una 
+      cita
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="384, 486, 476, 526" coords2="384, 486, 476, 526" shape="rect" alt="Asignar servicios:Use Case" id="areadiagram_map_05n9tjmFYEDK5y70_default" href="UseCase_05n9tjmFYEDK5y71.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      Permmite configurar la disponibiliadad y horarios de trabajo del 
+      profesional
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="177, 151, 257, 191" coords2="177, 151, 257, 191" shape="rect" alt="Calendario profesional:Use Case" id="areadiagram_map_3Bi9tjmFYEDK5y35_default" href="UseCase_3Bi9tjmFYEDK5y36.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      Validar que las credenciales ingresadas por parte del usuario sean 
+      correctas
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="568, 111, 648, 151" coords2="568, 111, 648, 151" shape="rect" alt="Validar datos:Use Case" id="areadiagram_map_5uQ1tjmFYEDK5xqg_default" href="UseCase_5uQ1tjmFYEDK5xqh.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; a los usuarios visualizar el promedio de 
+      calificaciones de los profesionales, los servicios y el establecimiento
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="359, 387, 502, 427" coords2="359, 387, 502, 427" shape="rect" alt="Visualizar promedio de calificaciones:Use Case" id="areadiagram_map_otgmIjmFYEDK_g7G_default" href="UseCase_otgmIjmFYEDK_g7H.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;El sistema permitir&amp;#225; al cliente registrar una calificaci&amp;#243;n (estrellas) 
+      sobre su experiencia tras finalizar su cita
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="549, 366, 674, 406" coords2="549, 366, 674, 406" shape="rect" alt="Registrar calificación de servicio:Use Case" id="areadiagram_map_PZPGIjmFYEDK_g60_default" href="UseCase_PZPGIjmFYEDK_g61.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      Para iniciar sesion cada usuario debe ingresar numero de documento y 
+      contrase&amp;#241;a
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="482, 42, 568, 82" coords2="482, 42, 568, 82" shape="rect" alt="Inicio de sesión:Use Case" id="areadiagram_map_GPrGIjmFYEDK_g6a_default" href="UseCase_GPrGIjmFYEDK_g6b.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; anular un registro de pago en caso de errores 
+      graves o devoluciones, dejando trazabilidad del motivo.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="753, 266, 845, 306" coords2="753, 266, 845, 306" shape="rect" alt="Anular registro de pago:Use Case" id="areadiagram_map_vmdGIjmFYEDK_g6I_default" href="UseCase_vmdGIjmFYEDK_g6J.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; corregir errores en el registro de pago (ej. si se 
+      marc&amp;#243; efectivo pero fue transferencia) antes del cierre de caja
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="752, 211, 852, 251" coords2="752, 211, 852, 251" shape="rect" alt="Editar registro de pago:Use Case" id="areadiagram_map_ZqRGIjmFYEDK_g52_default" href="UseCase_ZqRGIjmFYEDK_g53.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;El sistema permitir&amp;#225; consultar el historial de transacciones y el 
+      estado de los pagos realizados por cada cliente.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="736, 156, 863, 196" coords2="736, 156, 863, 196" shape="rect" alt="Consultar historial de transacciones:Use Case" id="areadiagram_map_IrmGIjmFYEDK_g5k_default" href="UseCase_IrmGIjmFYEDK_g5l.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El administrador registra el medio de pago que utilizan los clientes
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="741, 101, 857, 141" coords2="741, 101, 857, 141" shape="rect" alt="Registrar nuevo pago:Use Case" id="areadiagram_map_H5aGIjmFYEDK_g5S_default" href="UseCase_H5aGIjmFYEDK_g5T.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; borrar reportes guardados o hist&amp;#243;ricos del panel 
+      administrativo para limpieza de datos
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="716, 681, 861, 745" coords2="716, 681, 861, 745" shape="rect" alt="Borrar historial de reportes de pagos generados:Use Case" id="areadiagram_map_ePsGIjmFYEDK_g4s_default" href="UseCase_ePsGIjmFYEDK_g4t.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; editar los par&amp;#225;metros de un reporte ya configurado 
+      (ej. cambiar el rango de fechas antes de exportar)
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="697, 631, 890, 671" coords2="697, 631, 890, 671" shape="rect" alt="Editar parámetros de reportes generados de pagos:Use Case" id="areadiagram_map_tpIGIjmFYEDK_g4a_default" href="UseCase_tpIGIjmFYEDK_g4b.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; visualizar los reportes generados en pantalla con 
+      gr&amp;#225;fica de los ingresos en el per&amp;#237;odo seleccionado y tabla de datos
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="729, 554, 862, 594" coords2="729, 554, 862, 594" shape="rect" alt="Visualizar reportes generados de pagos:Use Case" id="areadiagram_map_43r6IjmFYEDK_g4I_default" href="UseCase_43r6IjmFYEDK_g4J.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; generar nuevos reportes personalizados 
+      seleccionando el periodo (d&amp;#237;a/semana/mes) y el criterio 
+      (profesional/servicio)
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="729, 494, 862, 534" coords2="729, 494, 862, 534" shape="rect" alt="Generar nuevos reportes de pagos:Use Case" id="areadiagram_map_aWj6IjmFYEDK_g32_default" href="UseCase_aWj6IjmFYEDK_g33.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; retirar servicios del cat&amp;#225;logo o marcarlos como &amp;quot;no 
+      disponibles&amp;quot; para que no aparezcan en el agendamiento.
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="597, 1007, 708, 1047" coords2="597, 1007, 708, 1047" shape="rect" alt="Eliminar servicios del catálogo:Use Case" id="areadiagram_map_ZLy6IjmFYEDK_g3Q_default" href="UseCase_ZLy6IjmFYEDK_g3R.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','597, 1007, 708, 1047',new Array(),new Array(),new Array(),new Array(),new Array(),new Array('ActivityDiagram_CtpD_zmGAqACCHGx.html/Eliminar servicios del cat&#xe1;logo - Scenario/ActivityDiagram'),new Array(),new Array(),new Array()),hideReferenceIcon(),showSubdiagramIcon('diagram', '597, 1007, 708, 1047'),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;El sistema permitir&amp;#225; actualizar los detalles de un servicio, como 
+      ajustes en el precio o cambios en la duraci&amp;#243;n del procedimiento
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="598, 930, 708, 970" coords2="598, 930, 708, 970" shape="rect" alt="Actualizar detalles de servicios:Use Case" id="areadiagram_map_sIM6IjmFYEDK_g2._default" href="UseCase_sIM6IjmFYEDK_g2_.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; a los clientes navegar y buscar servicios por 
+      categor&amp;#237;as o palabras clave
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="607, 872, 698, 912" coords2="607, 872, 698, 912" shape="rect" alt="Buscar servicios:Use Case" id="areadiagram_map__RE6IjmFYEDK_g2k_default" href="UseCase__RE6IjmFYEDK_g2l.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; cancelar una cita programada, liberando el espacio 
+      en el calendario de disponibilidad
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="266, 746, 418, 786" coords2="266, 746, 418, 786" shape="rect" alt="Cancelar cita programada:Use Case" id="areadiagram_map_3e3MIjmFYEDK_g0H_default" href="UseCase_Pe3MIjmFYEDK_g0I.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; reprogramar una cita (cambio de horario o 
+      especialista) notificando autom&amp;#225;ticamente a las partes involucradas
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="276, 688, 397, 728" coords2="276, 688, 397, 728" shape="rect" alt="Reprogramar cita:Use Case" id="areadiagram_map_hRrMIjmFYEDK_gzl_default" href="UseCase_hRrMIjmFYEDK_gzm.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; buscar y visualizar el perfil de un usuario 
+      mediante filtros como nombre, identificaci&amp;#243;n o correo electr&amp;#243;nico
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="319, 1066, 407, 1106" coords2="319, 1066, 407, 1106" shape="rect" alt="Buscar perfil de usuario:Use Case" id="areadiagram_map_BmP0IjmFYEDK_gxO_default" href="UseCase_BmP0IjmFYEDK_gxP.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;El sistema permitir&amp;#225; realizar la desactivaci&amp;#243;n l&amp;#243;gica de una cuenta de 
+      usuario cuando este lo solicite o por decisi&amp;#243;n administrativa
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="301, 1129, 426, 1169" coords2="301, 1129, 426, 1169" shape="rect" alt="Inhabilitar cuenta de usuario:Use Case" id="areadiagram_map_0R90IjmFYEDK_gw4_default" href="UseCase_0R90IjmFYEDK_gw5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; actualizar la informaci&amp;#243;n del perfil del usuario 
+      (tel&amp;#233;fono, contrase&amp;#241;a, etc)
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="286, 978, 410, 1018" coords2="286, 978, 410, 1018" shape="rect" alt="Actualizar información de perfil:Use Case" id="areadiagram_map_pCl0IjmFYEDK_gwm_default" href="UseCase_pCl0IjmFYEDK_gwn.html" onmouseover="storeReferenceAndSubdiagramInfos('diagram','286, 978, 410, 1018',new Array(),new Array(),new Array(),new Array(),new Array(),new Array(),new Array('UseCase_GPrGIjmFYEDK_g6b.html/Inicio de sesi&#xf3;n/UseCase'),new Array(),new Array()),showReferenceIcon('diagram', '286, 978, 410, 1018'),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema debe permitir el registro de usuarios con sus respectivos 
+      roles (como clientes y empleados), mediante sus credenciales (numero de 
+      documento y contrase&amp;#241;a) y el sistema guarda la informaci&amp;#243;n en la base de 
+      datos
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="329, 143, 519, 199" coords2="329, 143, 519, 199" shape="rect" alt="Registro de Usuarios:Use Case" id="areadiagram_map_7oDkIjmFYEDK_gvR_default" href="UseCase_7oDkIjmFYEDK_gvS.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; al administrador registrar nuevos servicios (ej. 
+      Manicura, Masaje) especificando nombre, descripci&amp;#243;n, duraci&amp;#243;n y precio
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="599, 814, 706, 854" coords2="599, 814, 706, 854" shape="rect" alt="Registrar nuevos servicios:Use Case" id="areadiagram_map_t_AAIjmFYEDK_gsW_default" href="UseCase_qeh_wjmFYEDK_go1.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="24, 334, 54, 394" coords2="24, 334, 54, 394" shape="rect" alt="Profesional:Actor" id="areadiagram_map_FoJ_wjmFYEDK_gpP_default" href="Actor_FoJ_wjmFYEDK_gpQ.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" coords="1062, 54, 1092, 114" coords2="1062, 54, 1092, 114" shape="rect" alt="Administrador:Actor" id="areadiagram_map_.LR_wjmFYEDK_gpH_default" href="Actor__LR_wjmFYEDK_gpI.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      &amp;nbsp;El sistema permitir&amp;#225; visualizar la agenda de citas mediante un 
+      calendario o lista filtrada por d&amp;#237;a, profesional o estado de la cita
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="264, 631, 406, 671" coords2="264, 631, 406, 671" shape="rect" alt="Consultar agenda de citas:Use Case" id="areadiagram_map_fR._wjmFYEDK_goi_default" href="UseCase_fR__wjmFYEDK_goj.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema verifica franjas de horarios disponibles para el agendamiento 
+      de citas de los empleados
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="176, 572, 265, 612" coords2="176, 572, 265, 612" shape="rect" alt="Validar disponibilidad:Use Case" id="areadiagram_map_77cfwjmFYEDK_gn3_default" href="UseCase_77cfwjmFYEDK_gn4.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="1151, 1037, 1181, 1097" coords2="1151, 1037, 1181, 1097" shape="rect" alt="Cliente:Actor" id="areadiagram_map_zj0fwjmFYEDK_gnj_default" href="Actor_Lj0fwjmFYEDK_gnk.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+<area imageId="diagram" docContent="&amp;lt;head&amp;gt;
+    
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body style=&amp;quot;color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;&amp;quot;&amp;gt;
+    &amp;lt;p style=&amp;quot;margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;&amp;quot;&amp;gt;
+      El sistema permitir&amp;#225; al cliente o administrador crear una nueva cita 
+      seleccionando fecha, hora, servicio y profesional disponible
+    &amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;" coords="329, 572, 499, 628" coords2="329, 572, 499, 628" shape="rect" alt="Agendar cita:Use Case" id="areadiagram_map_SAyvwjmFYEDK_gmC_default" href="UseCase_KAyvwjmFYEDK_gmD.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon(),showTooltip(this)" onmousedown="clearSpotLight();" onmouseout="hideTooltip()"/>
+<area imageId="diagram" coords="101, 2, 953, 1211" coords2="101, 2, 953, 1211" shape="rect" alt="Sistema NaiApp:System" id="areadiagram_map_QRSvwjmFYEDK_gl4_default" href="System_IRSvwjmFYEDK_gl5.html" onmouseover="hideReferenceIcon(),hideSubdiagramIcon(),hideTransitorIcon()" onmousedown="clearSpotLight();"/>
+</map>
+				</td>
+			</tr>
+		</table>
+		<p>
+		</p>
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="Category">
+				Model Elements			</td>
+		</tr>
+		<tr>
+			<td style="height: 5px">
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td colSpan="4" class="TableHeaderLine">
+			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine1">
+			</td>
+		</tr>
+		<tr class="TableHeader">
+			<td class="TableCellSpaceHolder10Px">
+			</td>
+			<td width="30%">
+<span class="TableHeaderText">Name</span>			</td>
+			<td class="TableCellSpaceHolder20Px">
+			</td>
+			<td>
+<span class="TableHeaderText">Description</span>			</td>
+		</tr>
+		<tr>
+			<td colSpan="4" class="TableHeaderLine2">
+			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/System.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/System.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="System_IRSvwjmFYEDK_gl5.html" class="ItemLink">Sistema NaiApp : System</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="Actor_Lj0fwjmFYEDK_gnk.html" class="ItemLink">Cliente : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="Actor__LR_wjmFYEDK_gpI.html" class="ItemLink">Administrador : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/Actor.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/Actor.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="Actor_FoJ_wjmFYEDK_gpQ.html" class="ItemLink">Profesional : Actor</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_KAyvwjmFYEDK_gmD.html" class="ItemLink">Agendar cita : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; al cliente o administrador crear una nueva cita 
+      seleccionando fecha, hora, servicio y profesional disponible
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_77cfwjmFYEDK_gn4.html" class="ItemLink">Validar disponibilidad : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema verifica franjas de horarios disponibles para el agendamiento 
+      de citas de los empleados
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_fR__wjmFYEDK_goj.html" class="ItemLink">Consultar agenda de citas : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      &nbsp;El sistema permitir&#225; visualizar la agenda de citas mediante un 
+      calendario o lista filtrada por d&#237;a, profesional o estado de la cita
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_qeh_wjmFYEDK_go1.html" class="ItemLink">Registrar nuevos servicios : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; al administrador registrar nuevos servicios (ej. 
+      Manicura, Masaje) especificando nombre, descripci&#243;n, duraci&#243;n y precio
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_7oDkIjmFYEDK_gvS.html" class="ItemLink">Registro de Usuarios : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema debe permitir el registro de usuarios con sus respectivos 
+      roles (como clientes y empleados), mediante sus credenciales (numero de 
+      documento y contrase&#241;a) y el sistema guarda la informaci&#243;n en la base de 
+      datos
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_pCl0IjmFYEDK_gwn.html" class="ItemLink">Actualizar información de perfil : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; actualizar la informaci&#243;n del perfil del usuario 
+      (tel&#233;fono, contrase&#241;a, etc)
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_0R90IjmFYEDK_gw5.html" class="ItemLink">Inhabilitar cuenta de usuario : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      &nbsp;El sistema permitir&#225; realizar la desactivaci&#243;n l&#243;gica de una cuenta de 
+      usuario cuando este lo solicite o por decisi&#243;n administrativa
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_BmP0IjmFYEDK_gxP.html" class="ItemLink">Buscar perfil de usuario : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; buscar y visualizar el perfil de un usuario 
+      mediante filtros como nombre, identificaci&#243;n o correo electr&#243;nico
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_hRrMIjmFYEDK_gzm.html" class="ItemLink">Reprogramar cita : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; reprogramar una cita (cambio de horario o 
+      especialista) notificando autom&#225;ticamente a las partes involucradas
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_Pe3MIjmFYEDK_g0I.html" class="ItemLink">Cancelar cita programada : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; cancelar una cita programada, liberando el espacio 
+      en el calendario de disponibilidad
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase__RE6IjmFYEDK_g2l.html" class="ItemLink">Buscar servicios : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; a los clientes navegar y buscar servicios por 
+      categor&#237;as o palabras clave
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_sIM6IjmFYEDK_g2_.html" class="ItemLink">Actualizar detalles de servicios : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      &nbsp;El sistema permitir&#225; actualizar los detalles de un servicio, como 
+      ajustes en el precio o cambios en la duraci&#243;n del procedimiento
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_ZLy6IjmFYEDK_g3R.html" class="ItemLink">Eliminar servicios del catálogo : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; retirar servicios del cat&#225;logo o marcarlos como &quot;no 
+      disponibles&quot; para que no aparezcan en el agendamiento.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_aWj6IjmFYEDK_g33.html" class="ItemLink">Generar nuevos reportes de pagos : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; generar nuevos reportes personalizados 
+      seleccionando el periodo (d&#237;a/semana/mes) y el criterio 
+      (profesional/servicio)
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_43r6IjmFYEDK_g4J.html" class="ItemLink">Visualizar reportes generados de pagos : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; visualizar los reportes generados en pantalla con 
+      gr&#225;fica de los ingresos en el per&#237;odo seleccionado y tabla de datos
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_tpIGIjmFYEDK_g4b.html" class="ItemLink">Editar parámetros de reportes generados de pagos : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; editar los par&#225;metros de un reporte ya configurado 
+      (ej. cambiar el rango de fechas antes de exportar)
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_ePsGIjmFYEDK_g4t.html" class="ItemLink">Borrar historial de reportes de pagos generados : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; borrar reportes guardados o hist&#243;ricos del panel 
+      administrativo para limpieza de datos
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_H5aGIjmFYEDK_g5T.html" class="ItemLink">Registrar nuevo pago : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El administrador registra el medio de pago que utilizan los clientes
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_IrmGIjmFYEDK_g5l.html" class="ItemLink">Consultar historial de transacciones : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      &nbsp;El sistema permitir&#225; consultar el historial de transacciones y el 
+      estado de los pagos realizados por cada cliente.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_ZqRGIjmFYEDK_g53.html" class="ItemLink">Editar registro de pago : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; corregir errores en el registro de pago (ej. si se 
+      marc&#243; efectivo pero fue transferencia) antes del cierre de caja
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_vmdGIjmFYEDK_g6J.html" class="ItemLink">Anular registro de pago : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; anular un registro de pago en caso de errores 
+      graves o devoluciones, dejando trazabilidad del motivo.
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_GPrGIjmFYEDK_g6b.html" class="ItemLink">Inicio de sesión : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      Para iniciar sesion cada usuario debe ingresar numero de documento y 
+      contrase&#241;a
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_PZPGIjmFYEDK_g61.html" class="ItemLink">Registrar calificación de servicio : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      &nbsp;El sistema permitir&#225; al cliente registrar una calificaci&#243;n (estrellas) 
+      sobre su experiencia tras finalizar su cita
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_otgmIjmFYEDK_g7H.html" class="ItemLink">Visualizar promedio de calificaciones : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; a los usuarios visualizar el promedio de 
+      calificaciones de los profesionales, los servicios y el establecimiento
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_5uQ1tjmFYEDK5xqh.html" class="ItemLink">Validar datos : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      Validar que las credenciales ingresadas por parte del usuario sean 
+      correctas
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_3Bi9tjmFYEDK5y36.html" class="ItemLink">Calendario profesional : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      Permmite configurar la disponibiliadad y horarios de trabajo del 
+      profesional
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_05n9tjmFYEDK5y71.html" class="ItemLink">Asignar servicios : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; seleccionar varios servicios para asociarlos a una 
+      cita
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow2">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_LT4DtjmFYEDK5y8a.html" class="ItemLink">Crear orden : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema genera una orden asociada a una cita agendada
+    </p>
+  </body></span>			</td>
+		</tr>
+		<tr class="TableRow1">
+			<td>
+			</td>
+			<td>
+				<span class="TableContent">
+					<div style="float: left; width: 18px !important;height: 18px !important;background-image:url(../images/icons/UseCase.png) !important; background-image:url(''); filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/icons/UseCase.png'); background-repeat: no-repeat; background-size: contain;">
+					</div>
+					&nbsp; <a href="UseCase_s5TDtjmFYEDK5y98.html" class="ItemLink">Modificar orden : Use Case</a>				</span>
+			</td>
+			<td>
+			</td>
+			<td style="padding: 5px 0">
+<span class="TableContent Documentation"><head>
+    
+  </head>
+  <body style="color:#000000;margin-left:0;font-weight:normal;font-size:12px;font-family:Dialog;margin-right:0;">
+    <p style="margin-left:0pt;margin-top:0pt;margin-bottom:.0001pt;margin-right:0pt;">
+      El sistema permitir&#225; al administrador actualizar informaci&#243;n antes de 
+      cerrar o pagar
+    </p>
+  </body></span>			</td>
+		</tr>
+	</table>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="TableCellSpaceHolder1PxTall">
+			</td>
+		</tr>
+		<tr>
+			<td class="TableFooter">
+			</td>
+		</tr>
+	</table>
+	<div style="height: 20px">
+	</div>
+	<table border="0" cellpadding="0" width="100%" cellspacing="0">
+		<tr>
+			<td class="FooterLine">
+			</td>
+		</tr>
+	</table>
+	<div class="HeaderText">
+		NAIAPP RF	</div>
+</body>
+</html>
