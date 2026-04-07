@@ -180,7 +180,7 @@ function arregloN10(){
         }
     }
     document.getElementById("arreglo").textContent= "Principal: " + principalA
-    document.getElementById("resultadoA").textContent= "Sin los multiplos: " + multiplos
+    document.getElementById("resultadoA").textContent= "Sin multiplos: " + multiplos
 }
 
 function Areatriangulo(){
